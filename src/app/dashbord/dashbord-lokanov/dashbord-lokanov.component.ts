@@ -39,10 +39,9 @@ export class DashbordLokanovComponent implements OnInit {
 
   logOut() {
     this.loginService.logout()
-   
     this.router.navigate(['/home'])
-  
-   // this.ngOnInit();
+    console.log(this.user + 'est deconnectée')
+   this.ngOnInit();
   }
 
 }

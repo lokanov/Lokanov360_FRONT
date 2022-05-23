@@ -40,7 +40,7 @@
 
   <li class="nav-item active">
     <a class="nav-link" (click)="activateClass('tab-7')" [ngClass]="{'active show': current === 'tab-7'}" >
-        <i class="fas fa-fw fa-bell"></i>
+        <i class="fas fa-fw fa-info-circle"></i>
         <span>Informations Entreprise</span></a>
   </li>
 
@@ -63,7 +63,7 @@
 
   <li class="nav-item active">
     <a class="nav-link">
-        <i class="fa-duotone fa-camera-retro"></i>
+        <i class="fas fa-fw fa-video"></i>
         <span>Gestion Des Videos</span></a>
 </li>
 
@@ -195,7 +195,7 @@
           <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="alertsDropdown">
               <h6 class="dropdown-header">
-                  Alerts Center
+               Notifications
               </h6>
               <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
@@ -204,12 +204,11 @@
                       </div>
                   </div>
                   <div>
-                      <div class="small text-gray-500">December 12, 2019</div>
                       <span class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
               </a>
-              
-              <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+
+              <a class="dropdown-item text-center small text-gray-500" href="#">Voir plus de Notifications</a>
           </div>
       </li>
 
@@ -225,7 +224,7 @@
           <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="messagesDropdown">
               <h6 class="dropdown-header">
-                  Message Center
+                  Messages
               </h6>
               <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
@@ -236,11 +235,11 @@
                   <div class="font-weight-bold">
                       <div class="text-truncate">Hi there! I am wondering if you can help me with a
                           problem I've been having.</div>
-                      <div class="small text-gray-500">Emily Fowler · 58m</div>
+                      <div class="small text-gray-500">Lokanov</div>
                   </div>
               </a>
              
-              <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+              <a class="dropdown-item text-center small text-gray-500" href="#">Lire plus de messagess</a>
           </div>
       </li>
 
@@ -257,13 +256,9 @@
           <!-- Dropdown - User Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal" >
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-              </a>
-              <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                  Changer Mot de passe
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -354,6 +349,27 @@
             </div>
         </div>
     </div>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Prêt pour quitter?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Deconnexion</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <a class="btn btn-primary">Se deconnecter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     
 
