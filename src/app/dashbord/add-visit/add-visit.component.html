@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="col-md-12">
+      <div class="card m-b-20">
+          <div class="card-header">
+              <h3 class="card-title" style="color: #0374a1">Creation de Visite Virtuelle</h3>
+          </div>
+          <div class="card-body">
+              <form #form ="ngForm">
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                          <div class="form-group">
+                              <label class="form-label" for="name" style="color: #0374a1">Numero Reference</label>
+                              <input type="text" class="form-control" [(ngModel)]="visit.numberReference" name="numberReference" id="numberReference" placeholder="Numero de Reference">
+                          </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="address" style="color: #0374a1">Titre</label>
+                            <input type="text" class="form-control" [(ngModel)]="visit.titre" name="titre" id="titre"  placeholder="Titre">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="InputLieu" style="color: #0374a1" class="col-form-label">Lieu</label>
+                        <select  id="InputLieu" name="lieu" [(ngModel)]="visit.lieu.id" class="form-control" class="form-control select2">
+                         <option value="0"  disabled>--Choisir un Lieu--</option>
+                         <option value="{{lieu.id}}" *ngFor="let lieu of lieus; let i=index">{{lieu.name}}</option>
+                       </select>
+                     </div>
+                      <div class="form-group col-md-6">
+                          <div class="form-group">
+                              <label class="form-label" for="address" style="color: #0374a1">Address</label>
+                              <input type="text" class="form-control" [(ngModel)]="visit.address" name="address" id="address"  placeholder="Emplacement de la voiture">
+                          </div>
+                      </div>
+                     
+                     <div class="form-group col-md-6" >
+                        <label for="Inputcategory" style="color: #0374a1" class="col-form-label">Categorie</label>
+                        <select  id="Inputcategory" name="category" [(ngModel)]="visit.category.id" (Change)="onSelect($event)" class="form-control" class="form-control select2">
+                         <option value="0"  disabled>--Choisir un category--</option>
+                         <option value="{{category.id}}" *ngFor="let category of categorys; let i=index">{{category.name}}</option>
+                       </select>
+                     </div>
+                  
+                     <div class="form-group col-md-6"  ng-if="category.name==='Appartement à Louer'">
+                        <label for="Inputmodality" style="color: #0374a1" class="col-form-label">Modalité</label>
+                        <select  id="Inputmodality" name="modality" [(ngModel)]="visit.modality.id" class="form-control" class="form-control select2">
+                         <option value="0"  disabled>--Choisir une modalité--</option>
+                         <option value="{{modality.id}}" *ngFor="let modality of modalitys; let i=index">{{modality.name}}</option>
+                       </select>
+                     </div>
+                   
+                     <div class="form-group col-md-8">
+                      <div class="form-group">
+                          <label class="form-label" for="inputPrix" style="color: #0374a1">Prix</label>
+                          <input type="text" name="price" class="form-control" [(ngModel)]="visit.price"  id="inputPrix"  placeholder="Prix">
+                      </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="form-group">
+                        <label class="form-label" for="inputPrix" style="color: #0374a1">Date Creation</label>
+                        <input type="datetime-local" name="dateCreated" class="form-control" [(ngModel)]="visit.dateCreated"  id="inputdateCreated"  placeholder="Date Creation">
+                    </div>
+                </div>
+                    
+                    </div>
+                
+                  <div class="form-group">
+                      <label class="col-form-label" style="color: #0374a1">Description</label>
+                      <textarea class="form-control" name="description" [(ngModel)]="visit.description" rows="2" id="description" placeholder="Description de la Visite..."></textarea>
+                  </div>
+                  <div class="form-group">
+                   <label for="Inputvideo" style="color: #0374a1" class="col-form-label">Video 360</label>
+                   <select  id="Inputvideo" name="video" [(ngModel)]="visit.video.id" class="form-control" class="form-control select2">
+                    <option value="0"  disabled>--Choisir une video 360--</option>
+                    <option value="{{video.id}}" *ngFor="let video of videos; let i=index">{{video.name}}</option>
+                  </select>
+                </div>
+
+                
+
+                <button  class="btn btn-success" [disabled]="!form.form.valid" (click)="onCreateVisite(visit)" type="submit" class="btn btn-primary ">Enregistrer</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+

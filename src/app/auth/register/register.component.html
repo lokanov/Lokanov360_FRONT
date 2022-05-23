@@ -1,0 +1,54 @@
+
+      <div class="container">
+        <div class="col-md-12">
+          <div class="card m-b-20">
+              <div class="card-header">
+                <h3 class="card-title" style="color: #0374a1">Creation de Compte</h3>
+               </div>
+              <div class="card-body">
+                      <form class="user" [formGroup]="form" id="register">
+                          <div class="form-group row">
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                  <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                      placeholder="Prenom" [(ngModel)]="user.firstName">
+                              </div>
+                              <div class="col-sm-6">
+                                  <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                      placeholder="Nom" [(ngModel)]="user.name">
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" id="exampleEmail"
+                                    placeholder="Email" [(ngModel)]="user.email">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="examplePassword"
+                                    placeholder="Mot de Passe" [(ngModel)]="user.password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="InputCompany" style="color: #0374a1" class="col-form-label">Entreprise</label>
+                         <select  id="InputCompany" name="company" [(ngModel)]="user.company.id"  class="form-control" class="form-control select2" placeholder="">
+                           <option value="0" disabled>--Choisir Entreprise--</option>
+                           <option value="{{company.id}}" *ngFor="let company of companys; let i=index">{{company.name}}</option>
+                         </select>
+                       </div>
+                          <div class="form-group">
+                            <label for="InputRole" style="color: #0374a1" class="col-form-label">Role</label>
+                           <select  id="InputRole" name="role" [(ngModel)]="user.role.id" class="form-control" class="form-control select2" placeholder="Role Utilisateur">
+                             <option value="0" disabled>--Choisir le role--</option>
+                             <option value="{{role.id}}" *ngFor="let role of roles; let i=index">{{role.name}}</option>
+                           </select>
+                         </div>
+                         <button  class="btn btn-success" (click)="registerUser()" type="submit" class="btn btn-primary ">Enregistrer</button>
+                          <hr>
+
+                      </form>
+
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+            
+
