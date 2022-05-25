@@ -8,23 +8,23 @@
               <div class="card-body">
                       <form class="user" [formGroup]="form" id="register">
                           <div class="form-group row">
-                              <div class="col-sm-6 mb-3 mb-sm-0">
-                                  <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                      placeholder="Prenom" [(ngModel)]="user.firstName">
+                              <div class="form-group col-sm-6 mb-3 mb-sm-0">
+                                  <input type="text" class="form-control" id="firstName"
+                                      placeholder="Prenom"  name ="firstName" [(ngModel)]="user.firstName">
                               </div>
-                              <div class="col-sm-6">
-                                  <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                      placeholder="Nom" [(ngModel)]="user.name">
+                              <div class="form-group col-sm-6">
+                                  <input type="text" class="form-control" id="exampleLastName"
+                                      placeholder="Nom" name="name" [(ngModel)]="user.name">
                               </div>
                           </div>
                           <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="text" class="form-control form-control-user" id="exampleEmail"
-                                    placeholder="Email" [(ngModel)]="user.email">
+                                <input type="text" class="form-control" id="email"
+                                    placeholder="Email" [(ngModel)]="user.email" name="email">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-user" id="examplePassword"
-                                    placeholder="Mot de Passe" [(ngModel)]="user.password">
+                                <input type="text" class="form-control" id="password"
+                                    placeholder="Mot de Passe" [(ngModel)]="user.password" name="password">
                             </div>
                         </div>
                         <div class="form-group">

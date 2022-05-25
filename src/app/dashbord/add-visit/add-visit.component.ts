@@ -20,12 +20,12 @@ import { filter } from 'rxjs';
   styleUrls: ['./add-visit.component.css']
 })
 export class AddVisitComponent implements OnInit {
-
   visit = new Visit();
   video = new Video();
   lieu = new Lieu();
   category = new Category();
   modality =  new Modality();
+ 
 
   videos: Video[] = [];
   lieus: Lieu[] = [];
@@ -55,24 +55,6 @@ export class AddVisitComponent implements OnInit {
     this.loadReferences();
   }
 
-  onSelect(cat : any)
-  {
-    if(cat.target.value)
-    {
-      this.modalityService.getModality().subscribe(
-        (value) =>
-     { 
-       
-          this.modalitys = value;
-          console.log(this.cat.target.value);
-        
-        }
-          );
-      
-  
-    }
-  }
-
   loadReferences()
   {
     //pour charger le select de la liste des videos
@@ -88,6 +70,13 @@ export class AddVisitComponent implements OnInit {
       this.lieus = value;
     });
       
+
+    this.modalityService.getModality().subscribe(
+      (value) =>
+      { 
+        this.modalitys = value;
+      }
+        );
     //pour charger le select de la liste des category
     this.categoryService.getCategory().subscribe(
       (value) => {

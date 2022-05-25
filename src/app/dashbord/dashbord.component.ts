@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_model/User';
 import { FilterSearchService } from 'src/app/_service/filterSearch.service';
-import { LoginService } from '../_service/login.service';
+import { AuthService } from '../_service/auth.service';
 
 @Component({
   selector: 'app-dashbord',
@@ -18,7 +18,7 @@ export class DashbordComponent implements OnInit {
   userConnected: User = new User();
 
 
-  constructor(private filterSearchService: FilterSearchService, private router: Router, private loginService: LoginService) { }
+  constructor(private filterSearchService: FilterSearchService, private router: Router, private authService : AuthService) { }
 
   ngOnInit(): void {
    if(this.filterSearchService.searchCriteria.searchData.user){
@@ -32,7 +32,7 @@ export class DashbordComponent implements OnInit {
     this.current = idTab;
   }
   logOut() {
-    this.loginService.logout()
+    this.authService.logout()
     this.router.navigate(['/home'])
     console.log(this.user + 'est deconnectée')
    this.ngOnInit();

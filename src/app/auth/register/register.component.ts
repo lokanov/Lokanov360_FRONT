@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_model/User';
 import { Role } from 'src/app/_model/Role';
-import { UserService } from 'src/app/_service/user.service';
+import { AuthService } from 'src/app/_service/auth.service';
 import { RoleService } from 'src/app/_service/role.service';
 import { RoleName } from 'src/app/_model/RoleName.enum';
 import { Company } from 'src/app/_model/Company';
 import { CompanyService } from 'src/app/_service/company.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,6 @@ import { CompanyService } from 'src/app/_service/company.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
   user = new User();
   role = new Role();
   company = new Company();
@@ -25,7 +25,8 @@ export class RegisterComponent implements OnInit {
   companys: Company[] = [];
   roleName : RoleName | undefined;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private roleService : RoleService, private companyService: CompanyService) {
+  constructor( private fb: FormBuilder, private authService: AuthService, private router: Router, private roleService : RoleService, private companyService: CompanyService)
+   {
     this.form = this.fb.group({
       firstName: [null, Validators.required],
       name: [null, Validators.required],
@@ -35,6 +36,7 @@ export class RegisterComponent implements OnInit {
       company: [null, Validators.required],
 
     });
+  
   }
 
   ngOnInit(): void {
@@ -60,13 +62,15 @@ export class RegisterComponent implements OnInit {
 }
 
 
+
   registerUser()
   {
-    this.userService.registerUserFromRemote(this.user).subscribe(
+    this.authService.registerUserFromRemote(this.user).subscribe(
       res => {
+        localStorage.getItem('userToken');
         this.user = res;
         alert('Votre compte a été créee avec succés!!!');
-        this.userService.setSession(this.user)
+        this.authService.setSession(this.user)
         this.router.navigate (['/login']);
         console.log(this.user);
       },

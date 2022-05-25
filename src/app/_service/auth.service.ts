@@ -1,23 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_model/User';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import * as moment from 'moment';
+
+
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+
+
+export class AuthService {
 
   user = new User();
   users: User[] = [];
 
+ requestHeader =  new HttpHeaders(
+   {
+     "No-Auth" : "True"
+   }
+ );
+
   constructor(private http: HttpClient) { }
+
+  public loginUserFromRemote(user: User): Observable<any> {
+    return this.http.post<User>(environment.host + '/auth/signin', user)
+  }
 
   registerUserFromRemote(user :User):Observable<User>
   {
-    return this.http.post<User>(environment.host+'/auth/signup', user);
+    return this.http.post<User>(environment.host+'/auth/signup', user );
   }
 
   addUser(user: User):Observable<User> {
@@ -44,6 +58,23 @@ export class UserService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
+  getToken()
+  {
+    localStorage.getItem('token');
+  }
+
+  logout() {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    localStorage.removeItem('isConnected');
+    localStorage.clear();
+     this.isLoggedOut();
+    //this.router.navigate(['/login'])
+  }
+  loggdIn()
+  {
+   !!localStorage.getItem('token');
+  }
 
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());

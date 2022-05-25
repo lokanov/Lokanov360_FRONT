@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_model/User';
+import { AuthService } from 'src/app/_service/auth.service';
 import { FilterSearchService } from 'src/app/_service/filterSearch.service';
-import { LoginService } from 'src/app/_service/login.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   userConnected: User = new User();
 
   constructor(private router: Router, private fb: FormBuilder,
-   private loginService: LoginService,private filterSearchService: FilterSearchService) {
+  private filterSearchService: FilterSearchService, private authService : AuthService) {
 
       this.formlogin = this.fb.group({
       email: [null, Validators.required],
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   loginUser()
   {
-      this.loginService.loginUserFromRemote(this.formlogin.value).subscribe(
+      this.authService.loginUserFromRemote(this.formlogin.value).subscribe(
 
      value => {
       alert('Utilisateur connecté avec succés!!!!!');
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       console.log(value);
       this.filterSearchService.setUser(this.user);
       this.filterSearchService.setUername(value.username);
-      this.loginService.setSession(this.user)
+      this.authService.setSession(this.user)
         switch (value.authorities[0].authority){
           case "ROLE_USER":
             this.router.navigate(['/dashbord']);

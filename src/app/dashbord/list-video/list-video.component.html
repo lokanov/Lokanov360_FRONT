@@ -33,7 +33,7 @@
                                               <td>{{video.dateCreated}}</td>
                                               <td>
                                                   <div class="row">
-                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Update" (click)="formUpdate(video, updateVideoForm)"><i class="fas fa-fw fa-pencil-alt"></i></a></div>
+                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip"  data-original-title="Update" (click)="formUpdate(video, updateVideoForm)"><i class="fas fa-fw fa-pencil-alt"></i></a></div>
                                                       <div class="col-lg-4"><a  class="btn btn-danger btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Delete" (click)="onDelete(video)"> <i class="fas fa-fw fa-trash"></i></a></div>
                                                     </div>
                                               </td>
@@ -52,16 +52,6 @@
   </div>
 </div>
 
-<!--
-<ng-template #templateConfirm>
-  <div class="modal-body text-center">
-    <p>Voulez-vous confirmer la suppression?</p>
-    <button type="button" class="btn btn-primary" (click)="onDelete(videoDelete)" >Appliquer</button>
-    <button type="button" class="btn btn-danger" (click)="decline()" >Annuler</button>
-  </div>
-</ng-template>
--->
-
 <ng-template #updateVideoForm>
   <div class="row">
       <div class="col-md-12">
@@ -72,31 +62,65 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <div class="card-body">
-                  <form #form ="ngForm">
-                      <div class="form-row">
-                          <div class="form-group col-md-4">
-                              <div class="form-group">
-                                  <label class="form-label" for="name">Nom</label>
-                                <input type="text"  class="form-control" name="name" id="name" {{video.name}}  placeholder="Nom de la video">
-                              </div>
-                          </div>
-                          <div class="form-group col-md-4">
-                              <div class="form-group">
-                                  <label class="form-label" for="url">Video 360</label>
-                                  <input type="text"  class="form-control" name="url" {{video.url}} id="url"  placeholder="URL du Video 360">
-                              </div>
-                          </div>
 
-                      </div>
-
-                      <button type="submit" (click)="onUpdate(videoNew)" class="btn btn-primary ">Enregistrer</button>
-                  </form>
-              </div>
+              <div class="container">
+                <div class="col-md-12">
+                    <div class="card m-b-20">
+                        <div class="card-header">
+                            <h3 class="card-title" style="color: #0374a1">Modification Video 360</h3>
+                        </div>
+                        <div class="card-body">
+                            <form #form ="ngForm" (ngSubmit)="onUpdate()">
+                              <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                      <div class="form-group">
+                                          <label class="col-form-label" style="color: #0374a1">Nom Video</label>
+                                          <input #video.name [(ngModel)]="videoUpdate.name" type="text" class="form-control" name="name" rows="2" placeholder="Nom du video 360">
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                      <label class="col-form-label" style="color: #0374a1"> URL Video 360</label>
+                                      <input #video.url [(ngModel)] = "videoUpdate.url"  type="text" class="form-control" name="url" rows="2" placeholder=" Url Video 360">
+                                    </div>
+                                </div>
+                                  <div class="form-group col-md-6">
+                                      <label class="col-form-label" style="color: #0374a1"> Nombre Pieces</label>
+                                      <input #video.nombrePieces [(ngModel)]="videoUpdate.nombrePieces"  type="number" class="form-control" name="nombrePieces" rows="2" placeholder=" Nombre pieces">
+                                 </div>
+                                  <div class="form-group col-md-6">
+                                      <div class="form-group">
+                                        <label class="col-form-label" style="color: #0374a1"> Nombre Etages</label>
+                                        <input #video.nombreEtages [(ngModel)]="videoUpdate.nombreEtages"  type="number" class="form-control" name="nombreEtages" rows="2" placeholder=" Nombre etages">
+                                      </div>
+                                  </div>
+                                 
+                                 <div class="form-group col-md-8" >
+                                      <label class="col-form-label" style="color: #0374a1">Surface</label>
+                                      <input #video.surface [(ngModel)]="videoUpdate.surface"  type="text" class="form-control" name="surface" rows="2" placeholder="Surface">
+                                 </div>
+                              
+                                 <div class="form-group col-md-4">
+                                     <label class="col-form-label" style="color: #0374a1">Prix Taxé</label>
+                                     <input #videoUpdate.priceTaxed  [(ngModel)]="videoUpdate.priceTaxed"  type="text" class="form-control" name="priceTaxed" rows="2" placeholder="price Taxé ">
+                                 </div>
+                               
+                                </div>
+                              <div class="form-group col-md-8">
+                                <div class="form-group">
+                                  <label class="col-form-label" style="color: #0374a1">Date de Creation</label>
+                                  <input #videoUpdate.dateCreated [(ngModel)]="videoUpdate.dateCreated"  type="datetime-local" class="form-control" name="dateCreated" rows="2" placeholder="Date de Creation">
+                                </div>
+                            </div>
+                                <button  class="btn btn-success" [disabled]="!form.valid"  type="submit" class="btn btn-primary ">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
       </div>
   </div>
 </ng-template>
-
 
 

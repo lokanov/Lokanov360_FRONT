@@ -1,4 +1,4 @@
-import { UserService } from 'src/app/_service/user.service';
+import { AuthService } from 'src/app/_service/auth.service';
 import { TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class ListUserComponent implements OnInit {
   userDelete: User = new User();
   modalRef:    BsModalRef = new BsModalRef();
 
-  constructor( private router: Router, private userService : UserService,
+  constructor( private router: Router, private authService : AuthService,
     private modalService : BsModalService) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class ListUserComponent implements OnInit {
 
   loadReferences()
   {
-    this.userService.getUser().subscribe(
+    this.authService.getUser().subscribe(
       (value) => {
       this.users = value;
       console.log(this.users);
@@ -52,7 +52,7 @@ export class ListUserComponent implements OnInit {
 onDelete(user:User)
 {
   //this.modalService.hide();
-  this.userService.deleteUser(user).subscribe(
+  this.authService.deleteUser(user).subscribe(
      (value) => {
        this.user = value;
        alert('User supprimée avec succés!!!');
@@ -69,7 +69,7 @@ formUpdate(user: User,template: TemplateRef<any>) {
 onUpdate(user: User)
  {
   user.setId(this.userUpdate.id);
-  this.userService.updateUser(user).subscribe(
+  this.authService.updateUser(user).subscribe(
     () => {
       this.ngOnInit();
       alert('User modifiée avec succés!!!');

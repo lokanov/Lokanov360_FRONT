@@ -55,7 +55,7 @@
 
   <li class="nav-item active">
     <a class="nav-link">
-        <i class="fas fa-fw fa-camera"></i>
+        <i class="fas fa-fw fa-film"></i>
         <span>Gestion Des Visites</span></a>
 </li>
 
@@ -74,10 +74,29 @@
 <hr class="sidebar-divider d-none d-md-block">
 
 <li class="nav-item active">
+    <a class="nav-link" (click)="activateClass('tab-9')" [ngClass]="{'active show': current === 'tab-9'}">
+        <i class="fas fa-fw fa-calendar-alt"></i>
+        <span>Prise de Rendez-Vous</span></a>
+  </li>
+
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <li class="nav-item active">
+    <a class="nav-link" (click)="activateClass('tab-10')" [ngClass]="{'active show': current === 'tab-10'}">
+        <i class="fas fa-fw fa-donate"></i>
+        <span>Grilles Tarifiaires</span></a>
+  </li>
+  
+
+
+<li class="nav-item active">
   <a class="nav-link" (click)="activateClass('tab-5')" [ngClass]="{'active show': current === 'tab-5'}">
       <i class="fas fa-fw fa-chart-pie"></i>
       <span>Gestion Des Statistiques</span></a>
 </li>
+
+
+
 
 
   <!-- Divider -->
@@ -281,7 +300,7 @@
 
                 <div class="tab-content col-xl-12 col-lg-12 col-md-12">
                   <div class="tab-pane" [ngClass]="{'active': current === 'tab-5'}" id="tab-5">
-                      <app-register></app-register>
+                      <app-statistic></app-statistic>
                   </div>
                 </div>
                 <div class="tab-content col-xl-12 col-lg-12 col-md-12">
@@ -289,6 +308,16 @@
                       <app-list-user></app-list-user>
                   </div>
                 </div>
+                <div class="tab-content col-xl-12 col-lg-12 col-md-12">
+                    <div class="tab-pane" [ngClass]="{'active': current === 'tab-9'}" id="tab-9">
+                        <app-add-appointement></app-add-appointement>
+                    </div>
+                  </div>
+                  <div class="tab-content col-xl-12 col-lg-12 col-md-12">
+                    <div class="tab-pane" [ngClass]="{'active': current === 'tab-9'}" id="tab-9">
+                        <app-grille-tarifiaire></app-grille-tarifiaire>
+                    </div>
+                  </div>
               </div>
               <!-- /.container-fluid -->
 

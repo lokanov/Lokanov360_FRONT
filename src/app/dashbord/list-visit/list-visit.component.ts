@@ -2,9 +2,16 @@ import { VisitService } from './../../_service/visit.service';
 import { Visit } from './../../_model/Visit';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { TemplateRef } from '@angular/core';
 import { Video } from 'src/app/_model/Video';
+import { Category } from 'src/app/_model/Category';
+import { VideoService } from 'src/app/_service/video.service';
+import { LieuService } from 'src/app/_service/lieu.service';
+import { CategoryService } from 'src/app/_service/category.service';
+import { ModalityService } from 'src/app/_service/modality.service';
+import { Lieu } from 'src/app/_model/Lieu';
+import { Modality } from 'src/app/_model/Modality';
 
 @Component({
   selector: 'app-list-visit',
@@ -18,12 +25,16 @@ export class ListVisitComponent implements OnInit {
   visitNew: Visit = new Visit();
   visitUpdate: Visit = new Visit();
   videos: Video[] = [];
+  lieus : Lieu[] =[];
+  categories: Category[] = [];
+  modalitys: Modality[] = [];
   visitDelete: Visit = new Visit();
 
-  //modalRef: BsModalRef = new BsModalRef();
+  modalRef: BsModalRef = new BsModalRef();
 
 
-  constructor( private router: Router, private visitService : VisitService) { }
+  constructor( private router: Router, private visitService : VisitService, private modalService : BsModalService, 
+    private videoService:  VideoService, private lieuService : LieuService, private categoryService : CategoryService, private modalityService : ModalityService) { }
 
 
   ngOnInit(): void {
@@ -50,6 +61,30 @@ export class ListVisitComponent implements OnInit {
       this.visits = value;
       console.log(this.visits);
     });
+
+    this.videoService.getVideo().subscribe(
+      (value) => {
+      this.videos = value;
+      console.log(this.videos);
+    });
+
+    this.lieuService.getLieu().subscribe(
+      (value) => {
+      this.lieus = value;
+    });
+      
+
+    this.modalityService.getModality().subscribe(
+      (value) =>
+      { 
+        this.modalitys = value;
+      }
+        );
+    //pour charger le select de la liste des category
+    this.categoryService.getCategory().subscribe(
+      (value) => {
+      this.categories = value;
+    });
 }
 
 /*
@@ -71,18 +106,18 @@ onDelete(visit:Visit){
 
 }
 
-/*
+
 formUpdate(visit: Visit,template: TemplateRef<any>) {
   this.visitUpdate = visit;
   this.modalRef = this.modalService.show(template, this.config);
 }
 
-onUpdate(visit: Visit) {
-  visit.setId(this.visitUpdate.id);
-  this.visitService.updateVisit(visit).subscribe(
+onUpdate() {
+  //visit.setId(this.visitUpdate.id);
+  this.visitService.updateVisit(this.visitUpdate).subscribe(
     () => {
       this.ngOnInit();
-      alert('Visit modifiée avec succés!!!');
+      alert('Visite modifiée avec succés!!!');
         //this.router.navigate(['/list']);
         console.log(this.visit);
     },
@@ -90,6 +125,6 @@ onUpdate(visit: Visit) {
       console.log(error);
     }
   );
-}*/
+}
 
 }

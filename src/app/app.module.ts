@@ -14,7 +14,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { CommonModule } from '@angular/common';
 import { UpdateVisitComponent } from './dashbord/update-visit/update-visit.component';
 import { StatisticComponent } from './dashbord/statistic/statistic.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './_service/token-interceptor.service';
 import { DashbordLokanovComponent } from './dashbord/dashbord-lokanov/dashbord-lokanov.component';
 import { UpdateVideoComponent } from './dashbord/update-video/update-video.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +30,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ListUserComponent } from './dashbord/list-user/list-user.component';
 import { AddCompanyComponent } from './dashbord/add-company/add-company.component';
 import { DashbordLokanovHomeComponent } from './dashbord/dashbord-lokanov-home/dashbord-lokanov-home.component';
-
+import { AddAppointementComponent } from './dashbord/add-appointement/add-appointement.component';
+import { AuthService } from './_service/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { GrilleTarifiaireComponent } from './dashbord/grille-tarifiaire/grille-tarifiaire.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +59,10 @@ import { DashbordLokanovHomeComponent } from './dashbord/dashbord-lokanov-home/d
     ListVideoComponent,
     ListUserComponent,
     AddCompanyComponent,
-    DashbordLokanovHomeComponent
-
+    DashbordLokanovHomeComponent,
+    AddAppointementComponent,
+    GrilleTarifiaireComponent
+  
    ],
   imports: [
     BrowserModule,
@@ -65,11 +71,14 @@ import { DashbordLokanovHomeComponent } from './dashbord/dashbord-lokanov-home/d
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+
     CommonModule,
     ModalModule.forRoot(),
   ],
 
-  providers: [],
+  providers: [
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
