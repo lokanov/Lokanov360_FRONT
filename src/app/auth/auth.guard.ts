@@ -12,9 +12,6 @@ export class AuthGuard implements CanActivate {
   {
 
   }
-
- 
- 
   canActivate(): boolean
   {
     if(localStorage.getItem('isConnected'))

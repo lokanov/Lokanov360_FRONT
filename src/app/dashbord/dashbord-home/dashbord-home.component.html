@@ -128,7 +128,7 @@
                     <div class="col-md-12 col-lg-12 col-xl-12">
                         <div class="card m-b-20">
                             <div class="card-header">
-                                <h3 class="card-title" style="color: #0374a1">Dernières Visites Virtuelles Ajoutées</h3>
+                                <h3 class="card-title" style="color: #0374a1">Dernières Visites Virtuelles</h3>
                             </div>
                             <div class class="card-body">
                                 <div class="table-responsive">
@@ -137,7 +137,10 @@
                                             <tr>
                                                 <th class="wd-15p" style="color: #0374a1">Numero Reference</th>
                                                 <th class="wd-15p" style="color: #0374a1">Titre</th>
+                                                <th class="wd-15p" style="color: #0374a1">Lieu</th>
                                                 <th class="wd-15p" style="color: #0374a1">Adresse</th>
+                                                <th class="wd-15p" style="color: #0374a1">Categorie</th>
+                                                <th class="wd-15p" style="color: #0374a1">Modalité</th>
                                                 <th class="wd-15p" style="color: #0374a1">Description</th>
                                                 <th class="wd-15p" style="color: #0374a1">Prix</th>
                                                 <th class="wd-15p" style="color: #0374a1">Date de Creation</th>
@@ -149,15 +152,18 @@
                                             <tr *ngFor="let visit of visits">
                                                 <td>{{visit.numberReference}}</td>
                                                 <td>{{visit.titre}}</td>
+                                                <td>{{visit.lieu.name}}</td>
                                                 <td>{{visit.address}}</td>
+                                                <td>{{visit.category.name}}</td>
+                                                <td>{{visit.modality.name}}</td>
                                                 <td>{{visit.description}}</td>
                                                 <td>{{visit.price}}</td>
                                                 <td>{{visit.dateCreated}}</td>
                                                 <td>{{visit.video.name}}</td>
                                                 <td>
                                                   <div class="row">
-                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Update"><i class="fa fa-pencil"></i></a></div>
-                                                      <div class="col-lg-4"><a  class="btn btn-danger btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Delete" (click)="onDelete(visit)"> <i class="fa fa-trash"></i></a></div>
+                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip"  data-original-title="Update" (click)="formUpdate(visit, updateVisitForm)"><i class="fas fa-fw fa-pencil-alt"></i></a></div>
+                                                      <div class="col-lg-4"><a  class="btn btn-danger btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Delete" (click)="onDelete(visit)"> <i class="fas fa-fw fa-trash"></i></a></div>
                                                   </div>
                                               </td>
                                             </tr>
@@ -186,7 +192,7 @@
     </div>
   </ng-template>
   -->
-  <!--
+  
   <ng-template #updateVisitForm>
     <div class="row">
         <div class="col-md-12">
@@ -197,56 +203,87 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <div class="card-header">
+                  <h3 class="card-title" style="color: #0374a1">Modification  Visite Virtuelle</h3>
+              </div>
                 <div class="card-body">
-                    <form #form ="ngForm">
+                  
+                    <form #form ="ngForm" (ngSubmit)="onUpdate()">
                         <div class="form-row">
-                          <div class="form-group col-md-4">
+                          <div class="form-group col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="numberReference">Numero de Reference</label>
-                                <input type="text" class="form-control" name="numberReference" id="numberReference" [(ngModel)]="visitNew.numberReference"  placeholder="Numero de Reference">
+                                <input type="text" class="form-control" name="numberReference" id="numberReference" [(ngModel)]="visitNew.numberReference" readonly  placeholder="Numero de Reference">
                             </div>
                         </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="titre">Titre</label>
-                                    <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="visitNew.titre"  placeholder="Titre de la Visite">
+                                    <input type="text" class="form-control" name="titre" id="titre" #visit.titre [(ngModel)]="visitUpdate.titre"  placeholder="Titre de la Visite">
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
+                              <label for="inputLieu" class="col-form-label">Lieu</label>
+                              <select  id="lieu" class="form-control select2" name="leu"  #visit.lieu [(ngModel)]="visitUpdate.video.id">
+                              <optgroup label="default">
+                                  <option value="{{visitUpdate.lieu.id}}"> {{visitUpdate.lieu.name}} </option>
+                              </optgroup>
+                                  <option value="{{lieu.id}}" *ngFor="let lieu of lieus; let i=index">{{lieu.name}}</option>
+                              </select>
+                          </div>
+                            <div class="form-group col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="address">Adresse</label>
-                                    <input type="text" class="form-control" name="url" [(ngModel)]="visitNew.address" id="address"  placeholder="adresse de la Visite">
+                                    <input type="text" class="form-control" name="address" #visit.address [(ngModel)]="visitUpdate.address" id="address"  placeholder="adresse de la Visite">
                                 </div>
                             </div>
+                            <div class="form-group col-md-8">
+                              <label for="inputUrl" class="col-form-label">Video 360</label>
+                              <select  id="url" class="form-control select2" name="url"  #visit.video.name [(ngModel)]="visitUpdate.video.id">
+                              <optgroup label="default">
+                                  <option value="{{visitUpdate.video.id}}"> {{visitUpdate.video.name}} </option>
+                              </optgroup>
+                                  <option value="{{video.id}}" *ngFor="let video of videos; let i=index">{{video.name}}</option>
+                              </select>
+                          </div>
                             <div class="form-group col-md-4">
                               <div class="form-group">
                                   <label class="form-label" for="price">Prix</label>
-                                  <input type="text" class="form-control" name="price" [(ngModel)]="visitNew.price" id="price"  placeholder="Prix de la Visite">
+                                  <input type="text" class="form-control" name="price" #visit.price [(ngModel)]="visitUpdate.price" id="price"  placeholder="Prix de la Visite">
                               </div>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-12">
                               <div class="form-group">
                                   <label class="form-label" for="description">Description</label>
-                                  <input type="text" class="form-control" name="description" [(ngModel)]="visitNew.description" id="description"  placeholder="Description de la Visite">
+                                  <input type="text" class="form-control" name="description" #visit.description [(ngModel)]="visitUpdate.description" id="description"  placeholder="Description de la Visite">
                               </div>
                           </div>
-                          <div class="form-group col-md-4">
-                            <label for="inputUrl" class="col-form-label">Video 360</label>
-                            <select  id="url" class="form-control select2" name="url" [(ngModel)]="visitNew.video.id">
-                            <optgroup label="default">
-                                <option value="{{visitUpdate.video.id}}"> {{visitUpdate.video.name}} </option>
-                            </optgroup>
-                                <option value="{{video.id}}" *ngFor="let video of videos; let i=index">{{video.name}}</option>
-                            </select>
-                        </div>
-                        </div>
-                        <button type="submit" (click)="onUpdate(visitNew)" class="btn btn-primary ">Enregistrer</button>
+                      <div class="form-group col-md-6">
+                          <label for="inputCategory" class="col-form-label">Category</label>
+                          <select  id="category" class="form-control select2" name="category"  #visit.category.name [(ngModel)]="visitUpdate.category.id">
+                          <optgroup label="default">
+                              <option value="{{visitUpdate.category.id}}"> {{visitUpdate.category.name}} </option>
+                          </optgroup>
+                              <option value="{{category.id}}" *ngFor="let category of categories; let i=index">{{category.name}}</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="inputModality" class="col-form-label">Modalité</label>
+                          <select  id="url" class="form-control select2" name="modality"  #visit.modality.name [(ngModel)]="visitUpdate.modality.id">
+                          <optgroup label="default">
+                              <option value="{{visitUpdate.modality.id}}"> {{visitUpdate.modality.name}} </option>
+                          </optgroup>
+                              <option value="{{modality.id}}" *ngFor="let modality of modalitys; let i=index">{{modality.name}}</option>
+                          </select>
+                      </div>
+                  </div>
+                        
+                        <button type="submit" class="btn btn-primary ">Enregistrer</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
   </ng-template>
-  -->
   
   

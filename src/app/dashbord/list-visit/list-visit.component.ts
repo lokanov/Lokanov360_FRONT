@@ -87,10 +87,17 @@ export class ListVisitComponent implements OnInit {
     });
 }
 
-/*
+
+templateConfirms(visit: Visit,template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template, this.configC);
+  this.confirm(visit);
+}
 confirm(visit: Visit){
   this.visitDelete = visit;
-}*/
+}
+decline(){
+  this.modalService.hide();
+}
 
 
 onDelete(visit:Visit){

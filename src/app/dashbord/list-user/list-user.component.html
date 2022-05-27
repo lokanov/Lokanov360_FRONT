@@ -25,7 +25,7 @@
                                               <td>{{user.email}}</td>
                                               <td>
                                                   <div class="row">
-                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Update" (click)="formUpdate(user, updateUserForm)"><i class="fa fa-check"></i></a></div>
+                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Update" (click)="formUpdate(user, updateUserForm)"><i class="fa fa-pencil-alt"></i></a></div>
                                                       <div class="col-lg-4"><a  class="btn btn-danger btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Delete" (click)="onDelete(user)"> <i class="fa fa-trash"></i></a></div>
                                                     </div>
                                               </td>
@@ -70,7 +70,7 @@
                           <div class="form-group col-md-4">
                               <div class="form-group">
                                   <label class="form-label" for="name">Nom</label>
-                                <input type="text"  class="form-control" name="name" id="name" {{video.name}}  placeholder="Nom de la video">
+                                <input type="text"  class="form-control" name="name" id="name" #user.name {{video.name}}  placeholder="Nom de la video">
                               </div>
                           </div>
                           <div class="form-group col-md-4">

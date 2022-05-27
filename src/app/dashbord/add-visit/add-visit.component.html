@@ -15,7 +15,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <div class="form-group">
-                            <label class="form-label" for="titre" style="color: #0374a1">Titre</label>
+                            <label class="form-label" for="address" style="color: #0374a1">Titre</label>
                             <input type="text" class="form-control" [(ngModel)]="visit.titre" name="titre" id="titre"  placeholder="Titre">
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                      
                      <div class="form-group col-md-6" >
                         <label for="Inputcategory" style="color: #0374a1" class="col-form-label">Categorie</label>
-                        <select  id="Inputcategory" name="category" [(ngModel)]="visit.category.id" class="form-control" class="form-control select2">
+                        <select  id="Inputcategory" name="category" [(ngModel)]="visit.category.id"  (change)="onSelect($event)" class="form-control" class="form-control select2">
                          <option value="0"  disabled>--Choisir un category--</option>
                          <option value="{{category.id}}" *ngFor="let category of categorys; let i=index">{{category.name}}</option>
                        </select>
@@ -44,7 +44,7 @@
                      <div class="form-group col-md-6">
                         <label for="Inputmodality" style="color: #0374a1" class="col-form-label">Modalité</label>
                         <select  id="Inputmodality" name="modality" [(ngModel)]="visit.modality.id" class="form-control" class="form-control select2">
-                         <option value="0"  disabled>--Choisir une modalité--</option>
+                         <option value="0"  disabled></option>
                          <option value="{{modality.id}}" *ngFor="let modality of modalitys; let i=index">{{modality.name}}</option>
                        </select>
                      </div>

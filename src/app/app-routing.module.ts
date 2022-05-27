@@ -1,7 +1,6 @@
-import { UpdateVideoComponent } from './dashbord/update-video/update-video.component';
+
 import { DashbordLokanovComponent } from './dashbord/dashbord-lokanov/dashbord-lokanov.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { UpdateVisitComponent } from './dashbord/update-visit/update-visit.component';
 import { ListVisitComponent } from './dashbord/list-visit/list-visit.component';
 import { AddVisitComponent } from './dashbord/add-visit/add-visit.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -23,8 +22,8 @@ const routes: Routes = [
   { path: 'add-visit', component:AddVisitComponent},
   { path: 'list-visit', component:ListVisitComponent},
   { path : 'list-video', component:ListVideoComponent},
-  { path: 'update', component:UpdateVisitComponent},
-  { path: 'updateVideo', component:UpdateVideoComponent},
+ // { path: 'update', component:UpdateVisitComponent},
+  //{ path: 'updateVideo', component:UpdateVideoComponent},
   //{ path: 'dashbord', canActivate: [AuthGuard], component:DashbordComponent } ,
  // { path: 'dashbord-lokanov', canActivate: [AuthGuard], component:DashbordLokanovComponent},
 

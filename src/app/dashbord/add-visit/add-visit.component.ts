@@ -20,20 +20,20 @@ import { filter } from 'rxjs';
   styleUrls: ['./add-visit.component.css']
 })
 export class AddVisitComponent implements OnInit {
+
   visit = new Visit();
   video = new Video();
   lieu = new Lieu();
   category = new Category();
   modality =  new Modality();
- 
 
   videos: Video[] = [];
   lieus: Lieu[] = [];
   categorys: Category[] = [];
   modalitys: Modality[] = [];
   form: FormGroup;
-   cat: any = [];
-   mod: any = [];
+   
+
 
 
   constructor(private fb: FormBuilder, private visitService: VisitService, private lieuService: LieuService, public filterSearchService: FilterSearchService,
@@ -55,6 +55,26 @@ export class AddVisitComponent implements OnInit {
     this.loadReferences();
   }
 
+
+  onSelect( e: any)
+  {
+  if(e.target.value == 3 || e.target.value == 5)
+  {
+    this.modalityService.getModality().subscribe(
+      (value) =>
+      {
+        this.modalitys = value;
+        console.log(this.modalitys);
+        
+      }
+        );
+  }
+  
+  }
+      
+    
+  
+
   loadReferences()
   {
     //pour charger le select de la liste des videos
@@ -69,21 +89,26 @@ export class AddVisitComponent implements OnInit {
       (value) => {
       this.lieus = value;
     });
-      
 
-    this.modalityService.getModality().subscribe(
-      (value) =>
-      { 
-        this.modalitys = value;
-      }
-        );
     //pour charger le select de la liste des category
     this.categoryService.getCategory().subscribe(
       (value) => {
       this.categorys = value;
     });
 }
-
+/*
+onSelect(cat: any)
+{
+  let name = cat.target.value;
+this.modalityService.getByCategory(name).subscribe(
+  (value) =>
+  { 
+    this.modalitys = value;
+    console.log(this.modalitys);
+  }
+    );
+}
+*/
 
 
   onCreateVisite(visit: Visit)

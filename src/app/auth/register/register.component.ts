@@ -61,8 +61,6 @@ export class RegisterComponent implements OnInit {
 
 }
 
-
-
   registerUser()
   {
     this.authService.registerUserFromRemote(this.user).subscribe(

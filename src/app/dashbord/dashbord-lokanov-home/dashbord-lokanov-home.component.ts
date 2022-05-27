@@ -71,10 +71,10 @@ formUpdate(video: Video,template: TemplateRef<any>) {
   this.videoUpdate = video;
   this.modalRef = this.modalService.show(template, this.config);
 }
-onUpdate(video: Video)
+onUpdate()
  {
-  video.setId(this.videoUpdate.id);
-  this.videoService.updateVideo(video).subscribe(
+ // video.setId(this.videoUpdate.id);
+  this.videoService.updateVideo(this.videoUpdate).subscribe(
     () => {
       this.ngOnInit();
       alert('Video modifiée avec succés!!!');
@@ -87,7 +87,7 @@ onUpdate(video: Video)
   );
 }
 
-/*
+
 confirm(video: Video){
   this.videoDelete = video;
 }
@@ -98,7 +98,7 @@ templateConfirms(video:Video,template: TemplateRef<any>) {
   this.modalRef = this.modalService.show(template, this.configC);
   this.confirm(video);
 }
-*/
+
 
 }
 

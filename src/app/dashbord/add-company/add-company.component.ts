@@ -38,15 +38,12 @@ export class AddCompanyComponent implements OnInit {
 
   loadReferences()
   {
-
     //pour charger le select de la liste des category
     this.abonnementService.getAbonnement().subscribe(
       (value) => {
       this.abonnements = value;
     });
 }
-
-
 
   onCreateCompany(company : Company)
   {

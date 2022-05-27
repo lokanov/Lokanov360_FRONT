@@ -12,12 +12,10 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CommonModule } from '@angular/common';
-import { UpdateVisitComponent } from './dashbord/update-visit/update-visit.component';
 import { StatisticComponent } from './dashbord/statistic/statistic.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './_service/token-interceptor.service';
 import { DashbordLokanovComponent } from './dashbord/dashbord-lokanov/dashbord-lokanov.component';
-import { UpdateVideoComponent } from './dashbord/update-video/update-video.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VisitVideoComponent } from './home/visit-video/visit-video.component';
 import { VisitVideoCardsComponent } from './home/visit-video-cards/visit-video-cards.component';
@@ -46,10 +44,8 @@ import { GrilleTarifiaireComponent } from './dashbord/grille-tarifiaire/grille-t
     LoginComponent,
     RegisterComponent,
     TopbarComponent,
-    UpdateVisitComponent,
     StatisticComponent,
     DashbordLokanovComponent,
-    UpdateVideoComponent,
     VisitVideoComponent,
     VisitVideoCardsComponent,
     HeaderComponent,
