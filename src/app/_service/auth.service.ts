@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_model/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -23,7 +23,14 @@ export class AuthService {
    }
  );
 
-  constructor(private http: HttpClient) { }
+ private currentUserSubject: BehaviorSubject<User>;
+ public currentUser: Observable<User>;
+
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+        this.currentUser = this.currentUserSubject.asObservable();
+        console.log(this.currentUser)
+   }
 
   public loginUserFromRemote(user: User): Observable<any> {
     return this.http.post<User>(environment.host + '/auth/signin', user)

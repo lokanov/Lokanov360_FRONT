@@ -50,6 +50,7 @@
 <hr class="sidebar-divider">
 <!-- Heading -->
 
+
   <!-- Nav Item - Pages Collapse Menu -->
   
 
@@ -74,9 +75,19 @@
 <hr class="sidebar-divider d-none d-md-block">
 
 <li class="nav-item active">
-    <a class="nav-link" (click)="activateClass('tab-9')" [ngClass]="{'active show': current === 'tab-9'}">
+    <a class="nav-link">
         <i class="fas fa-fw fa-calendar-alt"></i>
-        <span>Prise de Rendez-Vous</span></a>
+        <span>Gestion de Rendez-Vous</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="activateClass('tab-9')" [ngClass]="{'active show': current === 'tab-9'}">
+        <i></i>
+        <span>Prendre Rendez-Vous</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="activateClass('tab-11')" [ngClass]="{'active show': current === 'tab-11'}">
+        <i></i>
+        <span>Voir Liste Rendez-Vous</span></a>
   </li>
 
   <hr class="sidebar-divider d-none d-md-block">
@@ -279,7 +290,7 @@
                     </div>
                     <div class="tab-content col-xl-12 col-lg-12 col-md-12">
                       <div class="tab-pane" [ngClass]="{'active': current === 'tab-8'}" id="tab-8">
-                          <app-list-video></app-list-video>
+                          <app-infos-abonnement></app-infos-abonnement>
                       </div>
                     </div>
                   <div class="tab-content col-xl-12 col-lg-12 col-md-12">
@@ -311,6 +322,11 @@
                 <div class="tab-content col-xl-12 col-lg-12 col-md-12">
                     <div class="tab-pane" [ngClass]="{'active': current === 'tab-9'}" id="tab-9">
                         <app-add-appointement></app-add-appointement>
+                    </div>
+                  </div>
+                  <div class="tab-content col-xl-12 col-lg-12 col-md-12">
+                    <div class="tab-pane" [ngClass]="{'active': current === 'tab-11'}" id="tab-11">
+                        <app-list-appointment></app-list-appointment>
                     </div>
                   </div>
                   <div class="tab-content col-xl-12 col-lg-12 col-md-12">

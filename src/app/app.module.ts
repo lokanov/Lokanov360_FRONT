@@ -32,6 +32,11 @@ import { AddAppointementComponent } from './dashbord/add-appointement/add-appoin
 import { AuthService } from './_service/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { GrilleTarifiaireComponent } from './dashbord/grille-tarifiaire/grille-tarifiaire.component';
+import { InfosAbonnementComponent } from './dashbord/infos-abonnement/infos-abonnement.component';
+import { InfosAbonnementLokanovComponent } from './dashbord/infos-abonnement-lokanov/infos-abonnement-lokanov.component';
+import { ListAppointementComponent } from './dashbord/list-appointement/list-appointement.component';
+import { DetailsAppointementComponent } from './dashbord/details-appointement/details-appointement.component';
+import { ListAppointmentComponent } from './dashbord/list-appointment/list-appointment.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,12 @@ import { GrilleTarifiaireComponent } from './dashbord/grille-tarifiaire/grille-t
     AddCompanyComponent,
     DashbordLokanovHomeComponent,
     AddAppointementComponent,
-    GrilleTarifiaireComponent
+    GrilleTarifiaireComponent,
+    InfosAbonnementComponent,
+    InfosAbonnementLokanovComponent,
+    ListAppointementComponent,
+    DetailsAppointementComponent,
+    ListAppointmentComponent
   
    ],
   imports: [

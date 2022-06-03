@@ -48,6 +48,18 @@
                            <option value="{{abonnement.id}}" *ngFor="let abonnement of abonnements; let i=index">{{abonnement.name}}</option>
                          </select>
                        </div>
+                       <div class="form-group col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="DateDebut" style="color: #0374a1">Date Debut de Souscription</label>
+                            <input type="datetime-local" class="form-control" [(ngModel)]="company.dateDebut" name="dateDebut" id="personContact"  placeholder="Personne à Contacter">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="dateFin" style="color: #0374a1">Date Fin de Souscription </label>
+                            <input type="datetime-local" class="form-control" [(ngModel)]="company.dateFin" name="dateFin" id="personContact"  placeholder="Personne à Contacter">
+                        </div>
+                    </div>
 
                        </div>
                   <button  class="btn btn-success" [disabled]="!form.valid" (click)="onCreateCompany(company)" type="submit" class="btn btn-primary ">Enregistrer</button>

@@ -1,50 +1,115 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { filter, findIndex, pipe } from 'rxjs';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Appointment } from 'src/app/_model/Appointment';
-import { Bien } from 'src/app/_model/Bien';
 import { Category } from 'src/app/_model/Category';
 import { Etage } from 'src/app/_model/Etage';
 import { Surface } from 'src/app/_model/Surface';
-import { Visit } from 'src/app/_model/Visit';
-import {AppointmentService } from 'src/app/_service/appointment.service';
-import { BienService } from 'src/app/_service/bien.service';
+import { AppointmentService } from 'src/app/_service/appointment.service';
 import { CategoryService } from 'src/app/_service/category.service';
 import { EtageService } from 'src/app/_service/etage.service';
 import { SurfaceService } from 'src/app/_service/surface.service';
 
 @Component({
-  selector: 'app-add-appointement',
-  templateUrl: './add-appointement.component.html',
-  styleUrls: ['./add-appointement.component.css']
+  selector: 'app-list-appointment',
+  templateUrl: './list-appointment.component.html',
+  styleUrls: ['./list-appointment.component.css']
 })
-export class AddAppointementComponent implements OnInit {
+export class ListAppointmentComponent implements OnInit {
+
+  appointments: Appointment[] = [];
+ appointment: Appointment =  new Appointment();
+  //appointmentNew: appointment = new appointment();
+  appointmentUpdate: Appointment = new Appointment();
+  //videos: Video[] = [];
+  etages : Etage[] =[];
+  categories: Category[] = [];
+  surfaces: Surface[] = [];
+  appointmentDelete: Appointment = new Appointment();
+
+  modalRef: BsModalRef = new BsModalRef();
 
 
- 
-  categorys: Category[] = [];
-  biens: Bien[] = [];
-  surfaces : Surface[] = [];
-  etages: Etage[] = [];
-  appointments : Appointment[] = [];
-  mnt : any;
-  appointment : Appointment = new Appointment ();
-  category = new Category();
-  bien = new Bien();
-  surface = new Surface();
-  etage = new Etage();
+  constructor( private router: Router, private appointmentService: AppointmentService, private modalService : BsModalService, 
+   private surfaceService : SurfaceService, private categoryService : CategoryService, private etageService : EtageService) { }
 
-  constructor( private categoryService : CategoryService, private surfaceService: SurfaceService, 
-    private etageService: EtageService, private bienService : BienService, private appointmentService : AppointmentService) { }
 
   ngOnInit(): void {
     this.loadReferences();
   }
+  
   eC : any;
   eS : any;
   eE : any;
 
-  
+  config = {
+    backdrop: false,
+    animate: true,
+    ignoreBackdropClick: true,
+    class: 'modal-lg',
+  };
+    configC = {
+    backdrop: false,
+    animate: true,
+    ignoreBackdropClick: true,
+    class: 'modal-sm',
+  };
+
+  loadReferences()
+  {
+    this.appointmentService.getAppointment().subscribe(
+      (value) => {
+      this.appointments = value;
+      console.log(this.appointments);
+    });
+    this.surfaceService.getSurface().subscribe(
+      (value) => {
+      this.surfaces = value;
+    });
+      
+
+    this.etageService.getEtage().subscribe(
+      (value) =>
+      { 
+        this.etages = value;
+      }
+        );
+    //pour charger le select de la liste des category
+    this.categoryService.getCategory().subscribe(
+      (value) => {
+      this.categories = value;
+    });
+}
+
+
+templateConfirms(appointment: Appointment,template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template, this.configC);
+  this.confirm(appointment);
+}
+confirm(appointment: Appointment){
+  this.appointmentDelete = appointment;
+}
+decline(){
+  this.modalService.hide();
+}
+
+
+onDelete(appointment:Appointment){
+  //this.modalService.hide();
+  this.appointmentService.deleteAppointment(appointment).subscribe(
+     (value) => {
+       this.appointment = value;
+       alert(' Votre Rendez_Vous a été annulé avec succés!!!');
+       this.ngOnInit();
+       console.log(this.appointment);
+     }
+  );
+
+}
+
+
+
 
 onSelectCategory(eC : any)
 {
@@ -75,7 +140,7 @@ onSelectCategory(eC : any)
   });
 
   }
- // this.etages = [];
+  this.etages = [];
   
 }
 
@@ -129,6 +194,7 @@ onSelectSurface(eS : any)
     }
   }
 //maison
+
   if(eS.target.value == 5)
   {
     if(this.appointment.etage.id == 1)
@@ -176,87 +242,44 @@ onSelectSurface(eS : any)
   }
 
   }
+
   onSelectEtage(eE: any)
   {
     if(eE.target.value == 1)
     {
-
-       if(this.appointment.surface.id==5)
-       {
+     {
       this.appointment.montantTotal=70000
-       }
-       if(this.appointment.surface.id==6)
-       {
-      this.appointment.montantTotal=74000
-       }
-       if(this.appointment.surface.id==7)
-       {
-      this.appointment.montantTotal=75000
-       }
-     
+     }
     }
     if(eE.target.value == 2)
     {
-      if(this.appointment.surface.id==5)
-       {
       this.appointment.montantTotal=10000
-       }
-       if(this.appointment.surface.id==6)
-       {
-      this.appointment.montantTotal=20000
-       }
-       if(this.appointment.surface.id==7)
-       {
-      this.appointment.montantTotal=30000
-       }
     }
     if(eE.target.value == 3)
     {
-      if(this.appointment.surface.id==5)
-       {
       this.appointment.montantTotal=80000
-       }
-       if(this.appointment.surface.id==6)
-       {
-      this.appointment.montantTotal=90000
-       }
-       if(this.appointment.surface.id==7)
-       {
-      this.appointment.montantTotal=85000
-       }
     }
+   
   }
 
 
-  loadReferences()
-  {
-    //pour charger le select de la liste des category
-    this.categoryService.getCategory().subscribe(
-      (value) => {
-      this.categorys = value;
-    });
-   
-   
-   
-
+formUpdate(appointment: Appointment,template: TemplateRef<any>) {
+  this.appointmentUpdate = appointment;
+  this.modalRef = this.modalService.show(template, this.config);
 }
 
-  onCreateAppointement(appointment : Appointment)
-  {
-   this.appointmentService.addAppointment(appointment).subscribe(
-     (value) => 
-     {
-      this.appointment = value;
-      alert(' Votre Rendez Vous a été ajouté avec succés!!!');
-      //this.ngOnInit();
-      //this.router.navigate(['/list-video']);
-      console.log(this.appointment);
+onUpdate() {
+  //appointment.setId(this.appointmentUpdate.id);
+  this.appointmentService.updateAppointment(this.appointmentUpdate).subscribe(
+    () => {
+      this.ngOnInit();
+      alert('Votre Rendez-Vous a été modifié avec succés!!!');
+        //this.router.navigate(['/list']);
+        console.log(this.appointments);
     },
-     (_error) => {
-      console.log('error');
+    (error) => {
+      console.log(error);
     }
-   )
-  }
-
-
+  );
+}
 }

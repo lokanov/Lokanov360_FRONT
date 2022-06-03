@@ -8,7 +8,9 @@ export class Company{
     phone : string;
     personContact : string;
     abonnement : Abonnement;
-   
+    dateDebut: string;
+    dateFin: string;
+
     constructor()
       {
         this.id = 0;
@@ -18,6 +20,8 @@ export class Company{
 	    	this.phone = "";
 		    this.personContact = "";
 		    this.abonnement = new Abonnement();
+        this.dateDebut = "";
+        this.dateFin = "";
 
       }
   

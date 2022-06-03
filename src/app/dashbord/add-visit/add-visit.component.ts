@@ -31,14 +31,14 @@ export class AddVisitComponent implements OnInit {
   lieus: Lieu[] = [];
   categorys: Category[] = [];
   modalitys: Modality[] = [];
-  form: FormGroup;
+  formV: FormGroup;
    
 
 
 
   constructor(private fb: FormBuilder, private visitService: VisitService, private lieuService: LieuService, public filterSearchService: FilterSearchService,
      private modalityService: ModalityService, private videoService: VideoService, private categoryService: CategoryService, private router: Router) {
-    this.form = this.fb.group({
+    this.formV = this.fb.group({
       numberReference: [null, Validators.required],
       titre: [null, Validators.required],
       address: [null, Validators.required],
@@ -58,8 +58,7 @@ export class AddVisitComponent implements OnInit {
 
   onSelect( e: any)
   {
-  if(e.target.value == 3 || e.target.value == 5)
-  {
+  
     this.modalityService.getModality().subscribe(
       (value) =>
       {
@@ -68,7 +67,8 @@ export class AddVisitComponent implements OnInit {
         
       }
         );
-  }
+  
+  this.modalitys = [];
   
   }
       

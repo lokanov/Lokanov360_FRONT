@@ -1,0 +1,178 @@
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card m-b-20">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <div class="card m-b-20">
+                            <div class="card-header">
+                                <h3 class="card-title" style="color: #0374a1">Liste Des Rendez-Vous</h3>
+                            </div>
+                            <div class class="card-body">
+                                <div class="table-responsive">
+                                    <table  id="example" class="table table-striped table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th  style="color: #0374a1">Numero Reference</th>
+                                                <th  style="color: #0374a1">Nom Entreprise</th>
+                                                <th  style="color: #0374a1">Telephone</th>
+                                                <th  style="color: #0374a1">Email</th>
+                                                <th  style="color: #0374a1">Personne à Contacter</th>
+                                                <th  style="color: #0374a1">Surface</th>
+                                                <th  style="color: #0374a1">Etage</th>
+                                                <th  style="color: #0374a1">Type de bien</th>
+                                                <th  style="color: #0374a1">Montant à Payer</th>
+                                                <th  style="color: #0374a1">Autres</th>
+                                                <th style="color: #0374a1">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let appointment of appointments">
+                                                <td>{{appointment.numberReference}}</td>
+                                                <td>{{appointment.name}}</td>
+                                                <td>{{appointment.phone}}</td>
+                                                <td>{{appointment.email}}</td>
+                                                <td>{{appointment.personContact}}</td>
+                                                <td>{{appointment.etage.valeur}}</td>
+                                                <td>{{appointment.surface.valeur}}</td>
+                                                <td>{{appointment.category.name}}</td>
+                                                <td>{{appointment.montantTotal}}</td>
+                                                <td>{{appointment.autres}}</td>
+                                                
+                                                <td>
+                                                  <div>
+                                                   
+                                                      <div class="col-lg-4"><a class="btn btn-primary btn-sm text-white mb-1" onClick="print();"  data-toggle="tooltip"  data-original-title="Print"><i class="fas fa-fw fa-print"></i></a></div>
+                                                      <div class="col-lg-4"><a class="btn btn-warning btn-sm text-white mb-1"  data-toggle="tooltip"  data-original-title="Update" (click)="formUpdate(appointment, updateAppointmentForm)"><i class="fas fa-fw fa-pencil-alt"></i></a></div>
+                                                      <div class="col-lg-4"><a  class="btn btn-danger btn-sm text-white mb-1"  data-toggle="tooltip" data-original-title="Delete" (click)="templateConfirms(appointment, templateConfirm)"> <i class="fas fa-fw fa-trash"></i></a></div>
+                                                   
+                                                  </div>
+                                              </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                          
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+  
+        </div>
+    </div>
+  
+  </div>
+  
+  
+  <ng-template #templateConfirm>
+    <div class="modal-body text-center">
+      <p>Voulez-vous confirmer l'annulation de votre rendez-vous?</p>
+      <button type="button" class="btn btn-primary" (click)="onDelete(appointmentDelete)" >Appliquer</button>
+      <button type="button" class="btn btn-danger" (click)="decline()" >Annuler</button>
+    </div>
+  </ng-template>
+  
+  
+  <ng-template #updateAppointmentForm>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card m-b-20">
+                <div class="model-header">
+  
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-header">
+                  <h3 class="card-title" style="color: #0374a1">Modification Rendez-Vous</h3>
+              </div>
+                <div class="card-body">
+                  
+                    <form #form ="ngForm" (ngSubmit)="onUpdate()">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="numberReference">Numero de Reference</label>
+                                <input type="text" class="form-control" name="numberReference" id="numberReference" [(ngModel)]="appointmentUpdate.numberReference" readonly  placeholder="Numero de Reference">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Nom Entreprise</label>
+                                <input type="text" class="form-control" name="name" id="name" #appointment.name [(ngModel)]="appointmentUpdate.name">
+                            </div>
+                        </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Numéro de Téléphone</label>
+                                    <input type="text" class="form-control" name="phone" id="phone" #appointment.phone [(ngModel)]="appointmentUpdate.phone">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Email</label>
+                                    <input type="text" class="form-control" name="email" id="email" #appointment.email [(ngModel)]="appointmentUpdate.email">
+                                </div>
+                            </div>
+
+    
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="personContact">Personne à Contacter</label>
+                                    <input type="text" class="form-control" name="personContact" #appointment.personContact [(ngModel)]="appointmentUpdate.personContact" id="personContact">
+                                </div>
+                            </div>
+                           
+                           
+                      <div class="form-group col-md-6">
+                          <label for="inputCategory" class="col-form-label">Category</label>
+                          <select  id="category" class="form-control select2" name="category" (change)="onSelectCategory($event)"  #appointment.category.name [(ngModel)]="appointmentUpdate.category.id">
+                          <optgroup label="default">
+                              <option value="{{appointmentUpdate.category.id}}"> {{appointmentUpdate.category.name}} </option>
+                          </optgroup>
+                              <option value="{{category.id}}" *ngFor="let category of categories; let i=index">{{category.name}}</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="inputsurface" class="col-form-label">Surface</label>
+                          <select  id="url" class="form-control select2" name="surface" (change)="onSelectSurface($event)"  #appointment.surface.valeur [(ngModel)]="appointmentUpdate.surface.id">
+                          <optgroup label="default">
+                              <option value="{{appointmentUpdate.surface.id}}"> {{appointmentUpdate.surface.valeur}} </option>
+                          </optgroup>
+                              <option value="{{surface.id}}" *ngFor="let surface of surfaces; let i=index">{{surface.valeur}}</option>
+                          </select>
+                      </div>
+
+                      <div class="form-group col-md-8">
+                        <label for="inputUrl" class="col-form-label">etage 360</label>
+                        <select  id="url" class="form-control select2" name="etage" (change)="onSelectEtage($event)"  #appointment.etage.valeur [(ngModel)]="appointmentUpdate.etage.id">
+                        <optgroup label="default">
+                            <option value="{{appointmentUpdate.etage.id}}"> {{appointmentUpdate.etage.valeur}} </option>
+                        </optgroup>
+                            <option value="{{etage.id}}" *ngFor="let etage of etages; let i=index">{{etage.valeur}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="form-group">
+                            <label class="form-label" for="autres">Autres</label>
+                            <input type="text" class="form-control" name="autres" #appointment.autres [(ngModel)]="appointmentUpdate.autres" id="autres">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <div class="form-group">
+                            <label class="form-label" for="montantTotal">Montant à Payer</label>
+                            <input type="text" class="form-control" disabled name="montantTotal" #appointment.montantTotal [(ngModel)]="appointmentUpdate.montantTotal" id="montantTotal">
+                        </div>
+                    </div>
+                  </div>
+                        
+                        <button type="submit" class="btn btn-primary ">Enregistrer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </ng-template>
+  
+  

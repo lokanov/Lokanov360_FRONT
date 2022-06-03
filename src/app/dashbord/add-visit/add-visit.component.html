@@ -5,7 +5,7 @@
               <h3 class="card-title" style="color: #0374a1">Creation de Visite Virtuelle</h3>
           </div>
           <div class="card-body">
-              <form #form ="ngForm">
+              <form #formV ="ngForm">
                   <div class="form-row">
                       <div class="form-group col-md-6">
                           <div class="form-group">
@@ -41,10 +41,10 @@
                        </select>
                      </div>
                   
-                     <div class="form-group col-md-6">
+                     <div class="form-group col-md-6" *ngIf="visit.category.id == 2  ||  visit.category.id == 5">
                         <label for="Inputmodality" style="color: #0374a1" class="col-form-label">Modalité</label>
                         <select  id="Inputmodality" name="modality" [(ngModel)]="visit.modality.id" class="form-control" class="form-control select2">
-                         <option value="0"  disabled></option>
+                         <option value="0"  disabled>--Choisir un modalité--</option>
                          <option value="{{modality.id}}" *ngFor="let modality of modalitys; let i=index">{{modality.name}}</option>
                        </select>
                      </div>
@@ -78,7 +78,7 @@
 
                 
 
-                <button  class="btn btn-success" [disabled]="!form.form.valid" (click)="onCreateVisite(visit)" type="submit" class="btn btn-primary ">Enregistrer</button>
+                <button  class="btn btn-success" [disabled]="!formV.form.valid" (click)="onCreateVisite(visit)" type="submit" class="btn btn-primary ">Enregistrer</button>
               </form>
           </div>
       </div>
