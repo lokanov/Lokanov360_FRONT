@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,11 +11,15 @@ import { AppointmentService } from 'src/app/_service/appointment.service';
 import { CategoryService } from 'src/app/_service/category.service';
 import { EtageService } from 'src/app/_service/etage.service';
 import { SurfaceService } from 'src/app/_service/surface.service';
-
+import {formatDate} from '@angular/common';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-list-appointment',
   templateUrl: './list-appointment.component.html',
-  styleUrls: ['./list-appointment.component.css']
+  styleUrls: ['./list-appointment.component.css'],
+  providers: [DatePipe]
 })
 export class ListAppointmentComponent implements OnInit {
 
@@ -29,10 +34,15 @@ export class ListAppointmentComponent implements OnInit {
   appointmentDelete: Appointment = new Appointment();
 
   modalRef: BsModalRef = new BsModalRef();
+  currentDate = new Date();
 
+  constructor( private router: Router, private appointmentService: AppointmentService, private modalService : BsModalService,private datePipe : DatePipe,
+   private surfaceService : SurfaceService, private categoryService : CategoryService, private etageService : EtageService)
+   {
+   // this.myDate = this.datePipe.transform(this.myDate, 'yyyy/MM/dd');
+    //(new Date(), 'yyyy/MM/dd', 'en');
 
-  constructor( private router: Router, private appointmentService: AppointmentService, private modalService : BsModalService, 
-   private surfaceService : SurfaceService, private categoryService : CategoryService, private etageService : EtageService) { }
+    }
 
 
   ngOnInit(): void {
@@ -262,7 +272,7 @@ onSelectSurface(eS : any)
    
   }
 
-
+/*
 formUpdate(appointment: Appointment,template: TemplateRef<any>) {
   this.appointmentUpdate = appointment;
   this.modalRef = this.modalService.show(template, this.config);
@@ -281,5 +291,17 @@ onUpdate() {
       console.log(error);
     }
   );
+}*/
+
+
+//Facture Generation
+
+onGenerateFacture(appointment: Appointment,template: TemplateRef<any>) {
+  this.appointment = appointment;
+  this.modalRef = this.modalService.show(template, this.config);
+ 
+ 
+
 }
+
 }

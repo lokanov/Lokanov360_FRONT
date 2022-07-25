@@ -87,10 +87,12 @@ onSelectSurface(eS : any)
     {
       this.appointment.montantTotal = 10000
     }
+   
     if(this.appointment.category.id == 2)
     {
       this.appointment.montantTotal = 12000
     }
+   
   }
   if(eS.target.value == 2)
   {
@@ -225,8 +227,9 @@ onSelectSurface(eS : any)
       this.appointment.montantTotal=85000
        }
     }
+   
   }
-
+ 
 
   loadReferences()
   {
@@ -247,7 +250,7 @@ onSelectSurface(eS : any)
      (value) => 
      {
       this.appointment = value;
-      alert(' Votre Rendez Vous a été ajouté avec succés!!!');
+      //alert(' Votre Rendez Vous a été ajouté avec succés!!!');
       //this.ngOnInit();
       //this.router.navigate(['/list-video']);
       console.log(this.appointment);
@@ -256,6 +259,8 @@ onSelectSurface(eS : any)
       console.log('error');
     }
    )
+   alert('Rendez-Vous  ajoutée avec succés!!!');
+   window.location.reload()
   }
 
 

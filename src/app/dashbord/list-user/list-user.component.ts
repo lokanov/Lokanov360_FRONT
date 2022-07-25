@@ -68,7 +68,7 @@ formUpdate(user: User,template: TemplateRef<any>) {
 }
 onUpdate(user: User)
  {
-  user.setId(this.userUpdate.id);
+  //user.setId(this.userUpdate.id);
   this.authService.updateUser(user).subscribe(
     () => {
       this.ngOnInit();

@@ -4,6 +4,7 @@ import { Lieu } from './Lieu';
 import { Modality } from './Modality';
 
 export class Visit {
+    [x: string]: any;
     id: number;
     numberReference: string;
     titre: string;
@@ -15,7 +16,7 @@ export class Visit {
     modality : Modality;
     category: Category;
     dateCreated : string;
-  
+    rating : number
 
     constructor()
     {
@@ -30,6 +31,7 @@ export class Visit {
       this.modality = new Modality();
       this.category = new Category();
       this.dateCreated = "";
+      this.rating = 0
     
     }
 

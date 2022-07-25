@@ -13,7 +13,7 @@ export class ModalityService {
 
   constructor(private http: HttpClient)
    {
-
+    
    }
 
    addModality(modality: Modality):Observable<Modality> {

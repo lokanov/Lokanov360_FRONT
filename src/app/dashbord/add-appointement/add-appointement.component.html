@@ -21,26 +21,26 @@
                         <div class="form-group col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="name" style="color: #0374a1">Nom Entreprise</label>
-                                <input type="text" class="form-control" [(ngModel)]="appointment.name" name="name" id="name">
+                                <input type="text"  class="form-control" [(ngModel)]="appointment.name" name="name" id="name">
                             </div>
                         </div>
                        
                       <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="phone" style="color: #0374a1">Numero de Telephone</label>
-                            <input type="text" class="form-control" [(ngModel)]="appointment.phone" name="phone" id="phone"  placeholder="Numero de Telephone">
+                            <input type="text" class="form-control" required [(ngModel)]="appointment.phone" name="phone" id="phone"  placeholder="Numero de Telephone">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="email" style="color: #0374a1">Email</label>
-                            <input type="email" class="form-control" [(ngModel)]="appointment.email" name="email" id="email"  placeholder="Email">
+                            <input type="email" class="form-control" required [(ngModel)]="appointment.email" name="email" id="email"  placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="person" style="color: #0374a1">Personne à Contacter</label>
-                            <input type="text" class="form-control" [(ngModel)]="appointment.personContact" name="personContact" id="personContact"  placeholder="Personne à Contacter">
+                            <input type="text" class="form-control"  required [(ngModel)]="appointment.personContact" name="personContact" id="personContact"  placeholder="Personne à Contacter">
                         </div>
                     </div>
                    
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 
                                     <label for="Inputcategory" style="color: #0374a1" class="col-form-label">Type</label>
-                                    <select  id="Inputcategory" name="category" [(ngModel)]="appointment.category.id" (change)="onSelectCategory($event)" class="form-control" class="form-control select2">
+                                    <select  id="Inputcategory" required name="category" [(ngModel)]="appointment.category.id" (change)="onSelectCategory($event)" class="form-control" class="form-control select2">
                                      <option value="0"  disabled>--Choisir un type de Bien--</option>
                                      <option value="{{category.id}}" *ngFor="let category of categorys; let i=index">{{category.name}}</option>
                                    </select>
@@ -79,7 +79,7 @@
                         <div class="form-group col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="surface" style="color: #0374a1">Surface</label>
-                                <select  id="Input" name="surface" [(ngModel)]="appointment.surface.id" (change)="onSelectSurface($event)"  class="form-control" class="form-control select2">
+                                <select  id="Input" required name="surface" [(ngModel)]="appointment.surface.id" (change)="onSelectSurface($event)"  class="form-control" class="form-control select2">
                                  <option value="0"  disabled>--Choisir Surface--</option>
                                  <option value="{{surface.id}}" *ngFor="let surface of surfaces; let i=index">{{surface.valeur}}</option>
                                </select>
@@ -89,7 +89,7 @@
                     <div class="form-group col-md-6"  *ngIf="appointment.category.id == 3  ||  appointment.category.id == 4">
                         <div class="form-group">
                             <label class="form-label" for="etage" style="color: #0374a1">Nombre Etages</label>
-                            <select  id="Input" name="etage" [(ngModel)]="appointment.etage.id" (change)="onSelectEtage($event)"  class="form-control" class="form-control select2">
+                            <select  id="Input" required name="etage" [(ngModel)]="appointment.etage.id" (change)="onSelectEtage($event)"  class="form-control" class="form-control select2">
                              <option value="0"  disabled>--Choisir Nombre Etages--</option>
                              <option value="{{etage.id}}" *ngFor="let etage of etages; let i=index">{{etage.valeur}}</option>
                            </select>
@@ -97,12 +97,12 @@
                     </div>
                     <div class="form-group col-md-10">
                         <label class="col-form-label" style="color: #0374a1">Autres</label>
-                        <textarea class="form-control" name="description" [(ngModel)]="appointment.autres" rows="2" id="description" placeholder=""></textarea>
+                        <textarea class="form-control" required name="description" [(ngModel)]="appointment.autres" rows="2" id="description" placeholder=""></textarea>
                     </div>
                     <div class="form-group col-md-6" >
                         <div class="form-group">
                             <label class="form-label" for="person" style="color: #0374a1">Montant Total à Payer</label>
-                            <input type="text" disabled class="form-control" refresh [(ngModel)]="appointment.montantTotal" name="montantTotal" id=""  placeholder="">
+                            <input type="text"  disabled class="form-control"  [(ngModel)]="appointment.montantTotal" name="montantTotal" id=""  placeholder="">
                         </div>
                    </div> 
              </div>
@@ -116,7 +116,7 @@
 <div class="container">
     <div class="row">
       <div class="col text-center">
-        <button  [disabled]="!form.valid" (click)="onCreateAppointement(appointment)"  type ="submit" class=" btn  btn-block btn-lg btn-primary ">Valider</button>
+        <button  [disabled]="!form.form.valid" (click)="onCreateAppointement(appointment)"  type ="submit" class=" btn  btn-block btn-lg btn-primary ">Valider</button>
       </div>
     </div>
   </div>

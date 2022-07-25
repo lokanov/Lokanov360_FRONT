@@ -13,7 +13,7 @@ import { VisitService } from 'src/app/_service/visit.service';
   styleUrls: ['./dashbord-lokanov-home.component.css']
 })
 export class DashbordLokanovHomeComponent implements OnInit {
-
+  
   user = new User();
   userConnected = new  User();
 

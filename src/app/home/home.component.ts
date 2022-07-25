@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Visit } from '../_model/Visit';
+import { VisitService } from '../_service/visit.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  visits: Visit[] = [];
+  visit: Visit =  new Visit();
 
-  ngOnInit() {
+  constructor(private visitService : VisitService) { }
+
+  ngOnInit() {   
+  
   }
 
+ 
 }

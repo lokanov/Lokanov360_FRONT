@@ -1,189 +1,76 @@
 
 
-<div class="container" style="margin-top: 50px;" >
-<div class="row"  >
-  <div class="col-sm-3">
-<div class="card" style="width: 18rem;" >
+<br>
+<br>
+
+<br>
+<br>
+
+<!--Bouton filtre-->
+<div class="container-fluid">
+  <form role="form">
+    <div class="form-group">
+      <input  type="text" class="form-control empty" id="iconified" placeholder="&#xF002;    Je recherche..."/>
+      <button class="btn btn-secondary">Rehercher</button>
+    </div>
+    
+  </form>
+  </div>
+<br>
+<br><br>
+
+
+<app-number-by-catgeory></app-number-by-catgeory>
+
+
+
+<!--les visites-->
+<div class="container" style="margin-top: 70px;" >
+<div class="row"   >
+  <div class="col-sm-3" style="margin-bottom:20px" *ngFor="let visit of visits; let i = index"  >
+<div class="card" style="padding-top:20px; padding-bottom:40px;width: 18rem;height:530px;border-color: #0374a1;border-style: double 2px;color:#0374a1;border-radius: 60px;font-size: 20px; font-family: Montserrat;">
   <div class="embed-responsive embed-responsive-16by9">
-    <iframe width='853' height='480' src="https://mpembed.com/show/?m=JGPnGQ6hosj&mpu=1&play=1" frameborder='0' allowfullscreen allow='xr-spatial-tracking'></iframe>
+    <iframe  style="padding-left: 30px;padding-right: 30px;padding-top: 10px" class="embed-responsive-item"  [src]="_sanitizer.bypassSecurityTrustResourceUrl(visit.video.url)"
+
+    frameborder='0' allowfullscreen allow='xr-spatial-tracking'></iframe>
   </div>
   <div class="card-body" >
-    <h5 class="card-title font-weight-bold"><a>Appartement Meublé</a></h5>
-        <ul class="list-unstyled list-inline mb-0">
+
+    <h4 class="card-title font-weight-bold"><a>{{visit.category.name}}</a></h4>
+   
+        <ul class="list-inline mb-1" >
           <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"> </i>
+            <ngb-rating [max]="5" [(rate)]="visit.rating" [readonly]="false" style="color: rgba(245,149,42,1);font-size: 30px;"></ngb-rating>
           </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item">
-            <p class="text-muted">4.5 (413)</p>
-          </li>
+         
         </ul>
-        <p class="mb-2">1000$ • Almadies</p>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the
-          card's content.
+
+        <p class="mb-2"> <i class="fa fa-map-marker-alt mr-3" style="font-size: 30px"></i>{{visit.lieu.name}}
+    </p>
+        <p class="mb-2" style="font-weight: bold;margin-top:15px;color: #0374a1;" *ngIf="visit.category.id == 5  ||  visit.category.id == 3">
+          <i class="fas fa-tags mr-3" style="font-size: 22px;transform: rotateY(180deg)"></i>
+          {{visit.price}} / {{visit.modality.name}}
+       
         </p>
-    <a href="#" class="btn btn-primary">Regarder la Video</a>
-  </div>
-</div>
-</div>
-<div class="col-sm-3">
-<div class="card" style="width: 18rem;">
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe   class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title font-weight-bold"><a>Appartement Meublé</a></h5>
-        <ul class="list-unstyled list-inline mb-0">
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"> </i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item">
-            <p class="text-muted">4.5 (413)</p>
-          </li>
-        </ul>
-        <p class="mb-2">1000$ • Almadies</p>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the
-          card's content.
+        <p class="mb-2" style="display: inline;font-weight: bold;color: #0374a1" *ngIf="visit.category.id == 2  ||  visit.category.id == 4" >
+          <i class="fas fa-tags mr-3" style="font-size: 22px;transform: rotateY(180deg);margin-top:15px"></i>{{visit.price}}</p>
+
+
+
+        <p class="card-text" style="margin-left:20px;margin-top:20px;font-size:14px">
+
+         {{visit.description}}
+         
         </p>
-    <a href="#" class="btn btn-primary">Regarder la Video</a>
-  </div>
-</div>
-</div>
-<div class="col-sm-3">
-<div class="card" style="width: 18rem;" >
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe   class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title font-weight-bold"><a>Appartement Meublé</a></h5>
-        <ul class="list-unstyled list-inline mb-0">
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"> </i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item me-0">
-            <i class="fas fa-star text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-          </li>
-          <li class="list-inline-item">
-            <p class="text-muted">4.5 (413)</p>
-          </li>
-        </ul>
-        <p class="mb-2">1000$ • Almadies</p>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the
-          card's content.
-        </p>
-    <a href="#" class="btn btn-primary">Regarder la Video</a>
-  </div>
-</div>
-</div>
-<div class="col-sm-3">
-  <div class="card" style="width: 18rem;" >
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe   class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title font-weight-bold"><a>Appartement Meublé</a></h5>
-          <ul class="list-unstyled list-inline mb-0">
-            <li class="list-inline-item me-0">
-              <i class="fas fa-star text-warning fa-xs"> </i>
-            </li>
-            <li class="list-inline-item me-0">
-              <i class="fas fa-star text-warning fa-xs"></i>
-            </li>
-            <li class="list-inline-item me-0">
-              <i class="fas fa-star text-warning fa-xs"></i>
-            </li>
-            <li class="list-inline-item me-0">
-              <i class="fas fa-star text-warning fa-xs"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-            </li>
-            <li class="list-inline-item">
-              <p class="text-muted">4.5 (413)</p>
-            </li>
-          </ul>
-          <p class="mb-2">1000$ • Almadies</p>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the
-            card's content.
-          </p>
-      <a href="#" class="btn btn-primary">Regarder la Video</a>
-    </div>
+
+
+        <div class="cd">
+    <button class="btn"  (onClick)="onPlay()"  style="background-color: #0374a1;color:white;border-radius: 20px;font-size: 22px;width: 140px;margin-top:15px;height: max-content;">Découvrir</button>
   </div>
   </div>
-  <div class="col-sm-3">
-    <div class="card" style="width: 18rem;" >
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe   class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title font-weight-bold"><a>Appartement Meublé</a></h5>
-            <ul class="list-unstyled list-inline mb-0">
-              <li class="list-inline-item me-0">
-                <i class="fas fa-star text-warning fa-xs"> </i>
-              </li>
-              <li class="list-inline-item me-0">
-                <i class="fas fa-star text-warning fa-xs"></i>
-              </li>
-              <li class="list-inline-item me-0">
-                <i class="fas fa-star text-warning fa-xs"></i>
-              </li>
-              <li class="list-inline-item me-0">
-                <i class="fas fa-star text-warning fa-xs"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fas fa-star-half-alt text-warning fa-xs"></i>
-              </li>
-              <li class="list-inline-item">
-                <p class="text-muted">4.5 (413)</p>
-              </li>
-            </ul>
-            <p class="mb-2">1000$ • Almadies</p>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the
-              card's content.
-            </p>
-        <a href="#" class="btn btn-primary">Regarder la Video</a>
-      </div>
-    </div>
-    </div>
 </div>
 </div>
 
-
+</div>
+</div>
 

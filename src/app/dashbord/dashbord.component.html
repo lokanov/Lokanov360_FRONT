@@ -257,7 +257,7 @@
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small" >{{user.name}}</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small" >{{currentUser.name}}</span>
             <img class="img-profile rounded-circle"
                 src="../../assets/img/undraw_profile.svg">
         </a>
@@ -374,26 +374,53 @@
   </div>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="changePasswordModal"  role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Prêt pour quitter?</h5>
                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                   </button>
+                 
               </div>
-              <div class="modal-body">Deconnexion</div>
-              <div class="modal-footer">
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                  <a class="btn btn-primary">Se deconnecter</a>
-              </div>
-          </div>
+              <div class="card-header">
+                <h3 class="card-title" style="color: #0374a1">Changement de Mot de Passe</h3>
+            </div>
+            <div class="card-body">
+                <form #form ="ngForm">
+                    <div class="form-row">
+              <div class="form-group">
+              <div class="col-md-12">
+                <label for="InputCompany" style="color: #0374a1" class="col-form-label">Ancien Mot de Passe</label>
+                      <input required type="password" class="form-control" id="password"
+                          placeholder="Votre Ancien Mot de Passe" [(ngModel)]="user.password" name="passwordOld">
+                  </div>
+                  <div class="col-md-12">
+                    <label for="InputCompany" style="color: #0374a1" class="col-form-label">Nouveau Mot de Passe</label>
+                          <input required type="password" class="form-control" id="password"
+                              placeholder="Votre Nouveau Mot de Passe" [(ngModel)]="user.password" name="passwordNew">
+                      </div>
+                    </div>
+                    </div>
+                </form>
+
+                <br>
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <button  [disabled]="!form.form.valid"  type ="submit" class=" btn  btn-block btn-lg btn-primary ">Valider</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+            </div>
       </div>
   </div>
 
-
+  </div>
 
 </body>
 </html>

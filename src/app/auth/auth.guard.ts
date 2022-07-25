@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {  CanActivate, Router } from '@angular/router';
+import {  ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from '../_service/auth.service';
 
 
@@ -7,37 +8,25 @@ import { AuthService } from '../_service/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
- 
-  constructor(private  authService : AuthService, private router: Router)
+  constructor(private authService: AuthService, private router: Router)
   {
 
   }
+
   canActivate(): boolean
   {
-
-    if (this.authService.isLoggedIn()) {
-      // logged in so return true
-      return true;
-    }
-
-    else {
-      // not logged in so redirect to login page with the return url
-      this.router.navigate(['/home'])
-      return false;
-      }
-  }
-    /*
     if(localStorage.getItem('isConnected'))
     {
       //this.router.navigate(['/dashboard'])
       console.log(localStorage.getItem('isConnected'))
       return true;
+      
     }
     else
     {
+      alert('Access Denied, Login is Required to Access This Page!');
       this.router.navigate(['/login']);
       return false;
     }
-  }*/
-
+  }
 }

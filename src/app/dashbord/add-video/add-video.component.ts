@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Server } from 'http';
 
 
 @Component({
@@ -31,21 +32,24 @@ export class AddVideoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+text : any;
   onCreate()
   {
     this.videoService.addVideo(this.form.value).subscribe(
       (value) => {
         this.video = value;
-        alert('Video ajoutée avec succés!!!');
-        this.ngOnInit();
-        this.router.navigate(['/list-video']);
+       
+       this.text = "Video ajoutée dans votyre compte";
+     // window.location.hostname ="mailto:leyeamy82@gmail.com?subject='video'+body='video ajoute avec succes'"
+       
         console.log(this.video);
       },
       (_error) => {
         console.log('error');
       }
     );
+    alert('Video ajoutée avec succés!!!');
+    window.location.reload()
   }
 
 

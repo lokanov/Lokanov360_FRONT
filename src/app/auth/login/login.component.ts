@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  
+  }
 
   loginUser()
   {
@@ -37,9 +40,11 @@ export class LoginComponent implements OnInit {
       alert('Utilisateur connecté avec succés!!!!!');
       this.user = value;
       console.log(value);
-      this.filterSearchService.setUser(this.user);
-      this.filterSearchService.setUername(value.username);
+     // this.filterSearchService.setUser(this.user);
+     //this.filterSearchService.setUername(value.username);
+   //  localStorage.setItem('token', 'true')
       this.authService.setSession(this.user)
+      this.authService.getExpiration()
         switch (value.authorities[0].authority){
           case "ROLE_USER":
             this.router.navigate(['/dashbord']);

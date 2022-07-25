@@ -16,18 +16,21 @@ export class DashbordLokanovComponent implements OnInit {
   current : string = 'tab-1';
   user : User = new User();
   userConnected: User = new User();
+  currentUser: User ;
 
-
-  constructor(private filterSearchService: FilterSearchService, private router: Router, private authService : AuthService) { }
+  constructor(private filterSearchService: FilterSearchService, private router: Router, private authService : AuthService) { 
+    this.currentUser = this.authService.currentUserValue;
+  }
 
   ngOnInit(): void {
+    /*
     if(this.filterSearchService.searchCriteria.searchData.user)
     {
       this.user = this.filterSearchService.searchCriteria.searchData.user;
       this.userConnected = this.filterSearchService.searchCriteria.searchData.userConnected
 
      }
-      console.log(this.user)
+      console.log(this.user)*/
   }
 
 
@@ -39,9 +42,7 @@ export class DashbordLokanovComponent implements OnInit {
 
   logOut() {
     this.authService.logout()
-    this.router.navigate(['/home'])
-    console.log(this.user + 'est deconnectée')
-   this.ngOnInit();
+    this.router.navigate(['/login'])
   }
 
 }

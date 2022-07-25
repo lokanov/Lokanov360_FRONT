@@ -59,6 +59,7 @@ export class ListVisitComponent implements OnInit {
     this.visitService.getVisit().subscribe(
       (value) => {
       this.visits = value;
+      
       console.log(this.visits);
     });
 

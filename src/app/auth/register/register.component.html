@@ -11,45 +11,38 @@
                               <div class="form-group col-sm-6 mb-3 mb-sm-0">
                           <label for="" style="color: #0374a1" class="col-form-label">Prenom</label>
                                   <input type="text" class="form-control" id="firstName"
-                                      placeholder="Prenom"  name ="firstName" [(ngModel)]="user.firstName">
+                                      placeholder="Prenom"  name ="firstName"  formControlName="firstName">
                               </div>
                               <div class="form-group col-sm-6">
                           <label for="InputCompany" style="color: #0374a1" class="col-form-label">Nom</label>
 
                                   <input type="text" class="form-control" id="exampleLastName"
-                                      placeholder="Nom" name="name" [(ngModel)]="user.name">
+                                      placeholder="Nom" name="name"  formControlName="name">
                               </div>
                           </div>
                           <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                          <label for="InputCompany" style="color: #0374a1" class="col-form-label">Emai</label>
+                          <label for="InputCompany" style="color: #0374a1" class="col-form-label">Email</label>
                                 <input type="text" class="form-control" id="email"
-                                    placeholder="Email" [(ngModel)]="user.email" name="email">
+                                    placeholder="Email"  formControlName="email" name="email">
                             </div>
                             <div class="col-sm-6">
                           <label for="InputCompany" style="color: #0374a1" class="col-form-label">Mot de Passe</label>
                                 <input type="text" class="form-control" id="password"
-                                    placeholder="Mot de Passe" [(ngModel)]="user.password" name="password">
+                                    placeholder="Mot de Passe"  formControlName="password" name="password">
                             </div>
-                            <div class="form-group">
-                              <label for="InputCompany" style="color: #0374a1" class="col-form-label">Entreprise</label>
-                                    <input type="text" class="form-control" id="company"
-                                         [(ngModel)]="user.company" name="company" disabled>
-                                </div>
-                        </div>
-                        
+ 
+                        </div>                  
                           <div class="form-group">
                             <label for="InputRole" style="color: #0374a1" class="col-form-label">Role</label>
-                           <select  id="InputRole" name="role" [(ngModel)]="user.role.id" class="form-control" class="form-control select2" placeholder="Role Utilisateur">
+                           <select  id="InputRole" name="role"  formControlName="role" class="form-control" class="form-control select2" placeholder="Role Utilisateur">
                              <option value="0" disabled>--Choisir le role--</option>
                              <option value="{{role.id}}" *ngFor="let role of roles; let i=index">{{role.name}}</option>
                            </select>
                          </div>
                          <button  class="btn btn-success" (click)="registerUser()" type="submit" class="btn btn-primary ">Enregistrer</button>
                           <hr>
-
                       </form>
-
                       </div>
                       </div>
                       </div>

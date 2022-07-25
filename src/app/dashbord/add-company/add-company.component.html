@@ -8,42 +8,42 @@
                 <h3 class="card-title" style="color: #0374a1">Informations Entreprise</h3>
             </div>
             <div class="card-body">
-                <form #form ="ngForm">
+                <form #formV ="ngForm">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="name" style="color: #0374a1">Nom Entreprise</label>
-                                <input type="text" class="form-control" [(ngModel)]="company.name" name="name" id="name" placeholder="Nom Entreprise">
+                                <input type="text" class="form-control"  required [(ngModel)]="company.name" name="name" id="name" placeholder="Nom Entreprise">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                           <div class="form-group">
                               <label class="form-label" for="adress" style="color: #0374a1">Adresse</label>
-                              <input type="text" class="form-control" [(ngModel)]="company.adress" name="adress" id="adress"  placeholder="Adresse">
+                              <input type="text" class="form-control"  required [(ngModel)]="company.adress" name="adress" id="adress"  placeholder="Adresse">
                           </div>
                       </div>
                       <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="phone" style="color: #0374a1">Numero de Telephone</label>
-                            <input type="text" class="form-control" [(ngModel)]="company.phone" name="phone" id="phone"  placeholder="Numero de Telephone">
+                            <input type="text" class="form-control"  required [(ngModel)]="company.phone" name="phone" id="phone"  placeholder="Numero de Telephone">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="email" style="color: #0374a1">Email</label>
-                            <input type="email" class="form-control" [(ngModel)]="company.email" name="email" id="email"  placeholder="Email">
+                            <input type="email" class="form-control"  required [(ngModel)]="company.email" name="email" id="email"  placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="person" style="color: #0374a1">Personne à Contacter</label>
-                            <input type="text" class="form-control" [(ngModel)]="company.personContact" name="personContact" id="personContact"  placeholder="Personne à Contacter">
+                            <input type="text" class="form-control"  required [(ngModel)]="company.personContact" name="personContact" id="personContact"  placeholder="Personne à Contacter">
                         </div>
                     </div>
                    
                       <div class="form-group col-md-6">
                           <label for="InputAbonnement" style="color: #0374a1" class="col-form-label">Abonnement</label>
-                          <select  id="InputAbonnement" name="abonnement" [(ngModel)]="company.abonnement.id" class="form-control" class="form-control select2">
+                          <select  id="InputAbonnement"  required name="abonnement" [(ngModel)]="company.abonnement.id" class="form-control" class="form-control select2">
                            <option value="0"  disabled>--Choisir un Abonnement--</option>
                            <option value="{{abonnement.id}}" *ngFor="let abonnement of abonnements; let i=index">{{abonnement.name}}</option>
                          </select>
@@ -51,18 +51,17 @@
                        <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="DateDebut" style="color: #0374a1">Date Debut de Souscription</label>
-                            <input type="datetime-local" class="form-control" [(ngModel)]="company.dateDebut" name="dateDebut" id="personContact"  placeholder="Personne à Contacter">
+                            <input type="datetime-local"  required class="form-control" [(ngModel)]="company.dateDebut" name="dateDebut" id="personContact"  placeholder="Personne à Contacter">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="form-group">
                             <label class="form-label" for="dateFin" style="color: #0374a1">Date Fin de Souscription </label>
-                            <input type="datetime-local" class="form-control" [(ngModel)]="company.dateFin" name="dateFin" id="personContact"  placeholder="Personne à Contacter">
+                            <input type="datetime-local"  required class="form-control" [(ngModel)]="company.dateFin" name="dateFin" id="personContact"  placeholder="Personne à Contacter">
                         </div>
                     </div>
-
                        </div>
-                  <button  class="btn btn-success" [disabled]="!form.valid" (click)="onCreateCompany(company)" type="submit" class="btn btn-primary ">Enregistrer</button>
+                  <button  class="btn btn-success" [disabled]="!formV.form.valid" (click)="onCreateCompany(company)" type="submit" class="btn btn-primary ">Enregistrer</button>
                 </form>
             </div>
         </div>

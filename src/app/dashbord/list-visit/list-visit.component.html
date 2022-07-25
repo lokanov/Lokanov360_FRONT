@@ -9,7 +9,7 @@
                           </div>
                           <div class class="card-body">
                               <div class="table-responsive">
-                                  <table  id="example" class="table table-striped table-bordered" >
+                                  <table  id="example" class="table table-striped" >
                                       <thead>
                                           <tr>
                                               <th class="wd-15p" style="color: #0374a1">Numero Reference</th>
@@ -17,7 +17,7 @@
                                               <th class="wd-15p" style="color: #0374a1">Lieu</th>
                                               <th class="wd-15p" style="color: #0374a1">Adresse</th>
                                               <th class="wd-15p" style="color: #0374a1">Categorie</th>
-                                              <th class="wd-15p" style="color: #0374a1">Modalité</th>
+                                              <th  class="wd-15p" style="color: #0374a1">Modalité</th>
                                               <th class="wd-15p" style="color: #0374a1">Description</th>
                                               <th class="wd-15p" style="color: #0374a1">Prix</th>
                                               <th class="wd-15p" style="color: #0374a1">Date de Creation</th>
@@ -32,7 +32,7 @@
                                               <td>{{visit.lieu.name}}</td>
                                               <td>{{visit.address}}</td>
                                               <td>{{visit.category.name}}</td>
-                                              <td>{{visit.modality.name}}</td>
+                                              <td >{{visit.modality.name}}</td>
                                               <td>{{visit.description}}</td>
                                               <td>{{visit.price}}</td>
                                               <td>{{visit.dateCreated}}</td>
@@ -90,7 +90,7 @@
                         <div class="form-group col-md-6">
                           <div class="form-group">
                               <label class="form-label" for="numberReference">Numero de Reference</label>
-                              <input type="text" class="form-control" name="numberReference" id="numberReference" [(ngModel)]="visitNew.numberReference" readonly  placeholder="Numero de Reference">
+                              <input type="text" class="form-control" name="numberReference" id="numberReference" #visit.numberReference readonly  placeholder="Numero de Reference">
                           </div>
                       </div>
                           <div class="form-group col-md-6">
@@ -101,7 +101,7 @@
                           </div>
                           <div class="form-group col-md-4">
                             <label for="inputLieu" class="col-form-label">Lieu</label>
-                            <select  id="lieu" class="form-control select2" name="leu"  #visit.lieu [(ngModel)]="visitUpdate.video.id">
+                            <select  id="lieu" class="form-control select2" name="leu"  #visit.lieu [(ngModel)]="visitUpdate.lieu.id">
                             <optgroup label="default">
                                 <option value="{{visitUpdate.lieu.id}}"> {{visitUpdate.lieu.name}} </option>
                             </optgroup>

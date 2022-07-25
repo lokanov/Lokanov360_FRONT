@@ -37,7 +37,16 @@ import { InfosAbonnementLokanovComponent } from './dashbord/infos-abonnement-lok
 import { ListAppointementComponent } from './dashbord/list-appointement/list-appointement.component';
 import { DetailsAppointementComponent } from './dashbord/details-appointement/details-appointement.component';
 import { ListAppointmentComponent } from './dashbord/list-appointment/list-appointment.component';
+import { NumberByCatgeoryComponent } from './home/number-by-catgeory/number-by-catgeory.component';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { ContactComponent } from './home/contact/contact.component';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+
+//import {authInterceptorProviders} from  './helpers/auth.intrerceptor'
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +76,9 @@ import { ListAppointmentComponent } from './dashbord/list-appointment/list-appoi
     InfosAbonnementLokanovComponent,
     ListAppointementComponent,
     DetailsAppointementComponent,
-    ListAppointmentComponent
+    ListAppointmentComponent,
+    NumberByCatgeoryComponent,
+    ContactComponent
   
    ],
   imports: [
@@ -77,13 +88,14 @@ import { ListAppointmentComponent } from './dashbord/list-appointment/list-appoi
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-
+    NgxStarRatingModule,
     CommonModule,
+    NgbModule,
+    NgbRatingModule,
     ModalModule.forRoot(),
   ],
 
-  providers: [
-  ],
+  providers: [AuthGuard],
 
   bootstrap: [AppComponent]
 })

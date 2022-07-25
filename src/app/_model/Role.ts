@@ -2,11 +2,12 @@
 import { RoleName } from "./RoleName.enum";
 
 export class Role {
-  id: number | undefined;
-  name: RoleName | undefined;
+  id: number;
+  name:string;
 
   constructor()
    {
-
+   this.id = 0
+   this.name = ""
     }
 }

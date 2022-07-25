@@ -1,0 +1,25 @@
+.contain {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    color:#0374a1;
+    font-family: Montserrat;
+    
+  }
+  h1{
+    font-weight: bolder;
+  }
+  
+  .about:after { 
+    content:"";
+    display:block;
+    width: 10em;
+    max-width:10em;
+   border-bottom: 0.2em solid #0374a1;
+   margin:0.5em auto 0;
+  
+  }
+
+
+  
+  

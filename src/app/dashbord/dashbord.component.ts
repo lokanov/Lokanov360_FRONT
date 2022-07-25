@@ -17,17 +17,18 @@ export class DashbordComponent implements OnInit {
   current : string = 'tab-1';
   user : User = new User();
   userConnected: User = new User();
-  
-  constructor(private filterSearchService: FilterSearchService, private router: Router, private authService : AuthService) { }
-
-  ngOnInit(): void {
-    
-   if(this.filterSearchService.searchCriteria.searchData.user){
-    this.user = this.filterSearchService.searchCriteria.searchData.user;
-    this.userConnected = this.filterSearchService.searchCriteria.searchData.userConnected
-
+  currentUser: User = new User();
+  constructor(private filterSearchService: FilterSearchService, private router: Router, private authService : AuthService) {
+    this.currentUser = this.authService.currentUserValue;
    }
 
+  ngOnInit(): void {
+/*
+   if(this.filterSearchService.searchCriteria.searchData.user)
+   {
+    this.user = this.filterSearchService.searchCriteria.searchData.user;
+      console.log(this.user)
+   }*/
   
   }
   activateClass(idTab: string) {
@@ -35,9 +36,10 @@ export class DashbordComponent implements OnInit {
   }
   logOut() {
     this.authService.logout()
-    this.router.navigate(['/home'])
-    console.log(this.user + 'est deconnectée')
-   this.ngOnInit();
+    this.router.navigate(['/login'])
   }
+
+  
+  
 
 }

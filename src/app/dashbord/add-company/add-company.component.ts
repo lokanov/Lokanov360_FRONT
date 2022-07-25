@@ -16,11 +16,11 @@ export class AddCompanyComponent implements OnInit {
   company : Company = new Company ();
   abonnement = new Abonnement();
   abonnements: Abonnement[] = [];
-  form: FormGroup;
+  formV: FormGroup;
 
 
   constructor(private fb: FormBuilder,  private abonnementService: AbonnementService, private companyService : CompanyService, private router: Router) {
-    this.form = this.fb.group({
+    this.formV = this.fb.group({
       name: [null, Validators.required],
       address: [null, Validators.required],
       email : [null, Validators.required],

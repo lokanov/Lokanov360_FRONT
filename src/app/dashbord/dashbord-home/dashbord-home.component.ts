@@ -1,13 +1,16 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Abonnement } from 'src/app/_model/Abonnement';
 import { Category } from 'src/app/_model/Category';
+import { Company } from 'src/app/_model/Company';
 import { Lieu } from 'src/app/_model/Lieu';
 import { Modality } from 'src/app/_model/Modality';
 import { User } from 'src/app/_model/User';
 import { Video } from 'src/app/_model/Video';
 import { Visit } from 'src/app/_model/Visit';
 import { CategoryService } from 'src/app/_service/category.service';
+import { CompanyService } from 'src/app/_service/company.service';
 import { LieuService } from 'src/app/_service/lieu.service';
 import { ModalityService } from 'src/app/_service/modality.service';
 import { VideoService } from 'src/app/_service/video.service';
@@ -21,11 +24,15 @@ import { VisitService } from 'src/app/_service/visit.service';
 export class DashbordHomeComponent implements OnInit {
 
   visits: Visit[] = [];
+@Input() abonnement: Abonnement  = new Abonnement();
+  company: Company = new Company();
+  @Input() companys: Company[] = [];
   visit: Visit =  new Visit();
   visitNew: Visit = new Visit();
   visitUpdate: Visit = new Visit();
   videos: Video[] = [];
   lieus: Lieu[] = [];
+  @Input() abonnements: Abonnement[] = [];
   categories: Category[] = [];
   modalitys: Modality[] = [];
   visitDelete: Visit = new Visit();
@@ -34,7 +41,7 @@ export class DashbordHomeComponent implements OnInit {
 
 
   constructor( private router: Router, private modalService : BsModalService,  private visitService : VisitService,private videoService:  VideoService, private lieuService : LieuService,
-     private categoryService : CategoryService, private modalityService : ModalityService) { }
+     private categoryService : CategoryService, private modalityService : ModalityService, private companyService : CompanyService) { }
 
   ngOnInit(): void {
     this.loadReferences();
@@ -55,6 +62,17 @@ export class DashbordHomeComponent implements OnInit {
 
   loadReferences()
   {
+    this.companyService.getAbonnement().subscribe(
+      (value) => {
+      this.abonnements = value;
+      console.log(this.abonnements)
+    });
+/*
+    this.companyService.getCompany().subscribe(
+      (value) => {
+      this.companys = value;
+    });*/
+    
     this.visitService.getVisit().subscribe(
       (value) => {
       this.visits = value;
@@ -103,6 +121,9 @@ onDelete(visit:Visit){
   );
 
 }
+
+
+  
 
 
 formUpdate(visit: Visit,template: TemplateRef<any>) {

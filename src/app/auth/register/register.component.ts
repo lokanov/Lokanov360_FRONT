@@ -20,23 +20,21 @@ export class RegisterComponent implements OnInit {
   role = new Role();
   company = new Company();
   users: User[] = [];
-  form: FormGroup;
+  
   roles: Role[] = [];
   companys: Company[] = [];
-  roleName : RoleName | undefined;
-
+ // roleName : RoleName | undefined;
+ form: FormGroup;
+ 
   constructor( private fb: FormBuilder, private authService: AuthService, private router: Router, private roleService : RoleService, private companyService: CompanyService)
    {
     this.form = this.fb.group({
-      firstName: [null, Validators.required],
       name: [null, Validators.required],
+      firstName: [null, Validators.required],
       email: [null, Validators.required],
       password: [null, Validators.required],
       role: [null, Validators.required],
-      company: [null, Validators.required],
-
     });
-  
   }
 
   ngOnInit(): void {
@@ -63,14 +61,12 @@ export class RegisterComponent implements OnInit {
 
   registerUser()
   {
-    this.authService.registerUserFromRemote(this.user).subscribe(
-      res => {
-        localStorage.getItem('userToken');
-        this.user = res;
-        alert('Votre compte a été créee avec succés!!!');
-        this.authService.setSession(this.user)
-        this.router.navigate (['/login']);
+    this.authService.registerUserFromRemote(this.form.value).subscribe(
+    (value) => {
+      alert('Votre compte a été créee avec succés!!!');
+        this.user = value;
         console.log(this.user);
+        //this.router.navigate (['/login']);
       },
       (_error) => {
         console.log('error');

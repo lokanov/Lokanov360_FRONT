@@ -69,7 +69,7 @@ export class AddVisitComponent implements OnInit {
         );
   
   this.modalitys = [];
-  
+
   }
       
     
@@ -123,6 +123,8 @@ this.modalityService.getByCategory(name).subscribe(
         console.log('error');
       }
     );
+   
+  
   }
-
+ 
 }

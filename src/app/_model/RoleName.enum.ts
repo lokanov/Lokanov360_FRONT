@@ -1,6 +1,7 @@
  export enum RoleName{
-    user = "ROLE_USER",
-    presta = "ROLE_PRESTA",
-    admin = "ROLE_ADMIN"
-
-}
+     "ROLE_USER",
+     "ROLE_PRESTA",
+     "ROLE_ADMIN"
+   
+ }
+ 

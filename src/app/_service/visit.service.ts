@@ -42,4 +42,9 @@ getVisitByCategory(category: Category): Observable<Visit[]> {
   return this.http.get<Visit[]>(environment.host+'/visit/findByCategory', {params: params});
 }
 
+getNumberVisitByCategory():Observable<Visit[]> 
+{
+  return this.http.get<Visit[]>(environment.host+'/visit/findNumberVisitByCategory');
+}
+
 }

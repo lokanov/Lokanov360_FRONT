@@ -37,11 +37,14 @@ export class FilterSearchService {
   get searchCriteria(): ISearchCriteria {
     return this._searchCriteria.getValue();
   }
+  
   set searchCriteria(value: ISearchCriteria) {
     this._searchCriteria.next(value);
   }
   constructor() {
   }
+
+  
 
 setUser(value: any) : void{
   this.searchCriteria = {
@@ -72,11 +75,11 @@ setUername(value:any):void{
   };
 }
 
-
+/*
   setFormControlValue(value: any) {
     
     this.formValue = value;
-  }
+  }*/
 
   loadScriptt(url:string){
     const body =<HTMLDivElement> document.body;
@@ -87,4 +90,5 @@ setUername(value:any):void{
     script.defer = true;
     body.appendChild(script);
    }
+   
 }

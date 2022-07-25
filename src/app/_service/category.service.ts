@@ -32,11 +32,11 @@ export class CategoryService {
   deleteCategory(category: Category):Observable<Category>{
     return this.http.delete<Category>(environment.host+'/category/delete/'+category.id);
   }
-
+/*
   getCategoryByModality(modality: Modality): Observable<Category[]> {
     let params = new HttpParams()
     params =  params.append('name', modality.name);
     return this.http.get<Category[]>(environment.host+'/category/findByModality', {params: params});
 }
-
+*/
 }

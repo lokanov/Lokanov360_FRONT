@@ -12,4 +12,6 @@ export class VisitVideoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
 }

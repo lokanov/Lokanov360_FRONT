@@ -10,22 +10,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListVideoComponent } from './dashbord/list-video/list-video.component';
 import { AuthGuard } from './auth/auth.guard';
+import { VisitVideoComponent } from './home/visit-video/visit-video.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'dashbord' , component:DashbordComponent},
-  //{ path: 'dashbord-home' , component:Da},
-  { path: 'dashbord-lokanov', component:DashbordLokanovComponent},
   { path: 'login', component:LoginComponent},
   { path: 'register', component:RegisterComponent},
   { path: 'add-visit', component:AddVisitComponent},
   { path: 'list-visit', component:ListVisitComponent},
   { path : 'list-video', component:ListVideoComponent},
- // { path: 'update', component:UpdateVisitComponent},
-  //{ path: 'updateVideo', component:UpdateVideoComponent},
-  //{ path: 'dashbord', canActivate: [AuthGuard], component:DashbordComponent } ,
- // { path: 'dashbord-lokanov', canActivate: [AuthGuard], component:DashbordLokanovComponent},
+  { path: 'dashbord', canActivate: [AuthGuard], component:DashbordComponent} ,
+  { path: 'dashbord-lokanov', canActivate: [AuthGuard], component:DashbordLokanovComponent},
+  {path: 'visitVideo', component:VisitVideoComponent}
 
 ];
 
